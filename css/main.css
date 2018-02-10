@@ -1920,7 +1920,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #af00e5;
+  background: #81f7b3;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3008,7 +3008,6 @@ img:hover {
 }
 .links-of-author-item {
   margin: 5px 0 0;
-  width: 50%;
 }
 .links-of-author-item a {
   max-width: 216px;
@@ -3058,9 +3057,7 @@ img:hover {
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   margin: 5px 0 0;
-  width: 50%;
   display: inline-block;
-  width: unset;
 }
 .links-of-blogroll-inline .links-of-blogroll-item a {
   max-width: 216px;
