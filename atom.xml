@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://memmrf.top/"/>
-  <updated>2018-02-18T14:07:24.341Z</updated>
+  <updated>2018-01-30T13:32:22.000Z</updated>
   <id>http://memmrf.top/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android 定时器、定时任务整理</title>
+    <link href="http://memmrf.top/2018/01/30/2018/Android-%E5%AE%9A%E6%97%B6%E5%99%A8%E3%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B4%E7%90%86/"/>
+    <id>http://memmrf.top/2018/01/30/2018/Android-定时器、定时任务整理/</id>
+    <published>2018-01-30T13:30:12.000Z</published>
+    <updated>2018-01-30T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-ScheduledExecutorService"><a href="#1-ScheduledExecutorService" class="headerlink" title="1. ScheduledExecutorService"></a>1. ScheduledExecutorService</h2><ol><li><p>Timer不支持多线程。全部挂在Timer下的任务都是单线程的，任务仅仅能串行运行。假设当中一个任务运行时间过长。会影响到其它任务的运行，然后就可能会有各种接踵而来的问题。</p></li><li><p>Timer的线程不捕获异常。TimerTask假设抛出异常，那么Timer唯一的进程就会挂掉，这样挂在Timer下的全部任务都会无法继续运行。</p><p> 为了弥补Timer的缺陷，jdk1.5中引入了并发包。这里面提供的ScheduledExecutorService。详细实现类是：ScheduledThreadPoolExecutor。ScheduledThreadPoolExecutor支持多线程。同一时候在线程中对异常进行了捕获。</p><p>使用实例：</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Task2 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;deprecation&quot;)</span><br><span class="line">@Override</span><br><span class="line">public void run() &#123;</span><br><span class="line">System.out.println(&quot;----task2 start--------&quot;+new Date().toLocaleString());</span><br><span class="line">try &#123;</span><br><span class="line">Thread.sleep(5000);</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(&quot;----5s later, task2 end--------&quot;+new Date().toLocaleString());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">ScheduledExecutorService pool = Executors.newScheduledThreadPool(2);//启用2个线程</span><br><span class="line"></span><br><span class="line">Task1 t1 = new Task1();</span><br><span class="line">// 马上运行，任务消耗3秒。运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">pool.scheduleWithFixedDelay(t1, 0, 2, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">// 马上运行，任务消耗5秒，运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">Task2 t2 = new Task2();</span><br><span class="line">pool.scheduleWithFixedDelay(t2, 0, 2, TimeUnit.SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>运行结果：<br><img src="http://upload-images.jianshu.io/upload_images/1552105-89b0568020832ccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果.png"></p><p>这样任务之间就不会相互影响了。并且能够同一时候运行。可是线程数量要设置好了。</p><h4 id="在Android-使用也是如此："><a href="#在Android-使用也是如此：" class="headerlink" title="在Android 使用也是如此："></a>在Android 使用也是如此：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private ScheduledExecutorService scheduleTaskExecutor;</span><br><span class="line"></span><br><span class="line">scheduleTaskExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactory() &#123;</span><br><span class="line">                    private AtomicInteger atoInteger = new AtomicInteger(0);</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public Thread newThread(Runnable r) &#123;</span><br><span class="line">                        Thread t = new Thread(r);</span><br><span class="line">                        t.setName(&quot;App-Thread&quot; + atoInteger.getAndIncrement());</span><br><span class="line">                        return t;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">// 开启执行</span><br><span class="line">private void startScheduledTask() &#123;</span><br><span class="line">        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPDATE_DATA;</span><br><span class="line">                mHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1, 3, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        if (scheduleTaskExecutor != null &amp;&amp; !scheduleTaskExecutor.isShutdown()) &#123;</span><br><span class="line">            scheduleTaskExecutor.shutdown();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="2-Timer定时器"><a href="#2-Timer定时器" class="headerlink" title="2. Timer定时器"></a>2. Timer定时器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private Timer mTimer;</span><br><span class="line">mTimer = new Timer();</span><br><span class="line"></span><br><span class="line">// 开启任务</span><br><span class="line">private void startTimerTask() &#123;</span><br><span class="line">        mTimer.schedule(new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPLOAD_RIDING_LBS;</span><br><span class="line">                mMapLocHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1000, 3000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 取消任务</span><br><span class="line">private void cancelTask()&#123;</span><br><span class="line">        if (mTimer != null) &#123;</span><br><span class="line">            mTimer.cancel();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><hr><h2 id="3-定时器的三种方法"><a href="#3-定时器的三种方法" class="headerlink" title="3.定时器的三种方法"></a>3.定时器的三种方法</h2><ol><li>第一种方法:Thread.sleep();方法</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                while (true) &#123;</span><br><span class="line">                    mHandler.sendEmptyMessage(0);</span><br><span class="line">                    try &#123;</span><br><span class="line">                        Thread.sleep(1000);</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">new Thread(runnable).start();</span><br></pre></td></tr></table></figure><ol><li>第二种方法:Handler的postDelay()方法</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">final Runnable runnable = new Runnable() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               if (isStart2) &#123;</span><br><span class="line">                   mHandler.sendEmptyMessage(0);</span><br><span class="line">                   mHandler.postDelayed(this, 1000);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">mHandler.postDelayed(runnable, 1000);</span><br></pre></td></tr></table></figure><ol><li>第三种:Timer和TimerTask</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> private Timer timer = new Timer();</span><br><span class="line">        private TimerTask timerTask = new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                mHandler.sendEmptyMessage(0);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">timer.schedule(timerTask, 1000, 1000);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-ScheduledExecutorService&quot;&gt;&lt;a href=&quot;#1-ScheduledExecutorService&quot; class=&quot;headerlink&quot; title=&quot;1. ScheduledExecutorService&quot;&gt;&lt;/a&gt;1. Sche
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello 2018</title>
     <link href="http://memmrf.top/2018/01/01/2018/Hello-2018/"/>
     <id>http://memmrf.top/2018/01/01/2018/Hello-2018/</id>
     <published>2018-01-01T00:00:00.000Z</published>
-    <updated>2018-02-18T14:07:24.341Z</updated>
+    <updated>2018-02-18T14:39:10.777Z</updated>
     
     <content type="html"><![CDATA[<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="https://ooo.0o0.ooo/2017/12/31/5a4902c63fb80.jpg" alt="hello2018.jpg"></div></div><div class="group-picture-row"></div></div></div>]]></content>
     
@@ -38,6 +65,37 @@
     
     
       <category term="picture" scheme="http://memmrf.top/tags/picture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AndroidStudio 3.0的一些变化</title>
+    <link href="http://memmrf.top/2017/12/18/2017/AndroidStudio-3.0-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96%E5%8F%8AIDE%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/"/>
+    <id>http://memmrf.top/2017/12/18/2017/AndroidStudio-3.0-的一些变化及IDE配置问题整理/</id>
+    <published>2017-12-18T13:30:12.000Z</published>
+    <updated>2017-12-18T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。<br>如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。</p></blockquote><ol><li><a href="http://blog.csdn.net/u011315960/article/details/78365629" target="_blank" rel="noopener">[#CSDN#] Android Studio 3.0 的一些变化</a></li><li><a href="http://blog.csdn.net/yechaoa/article/details/78363911" target="_blank" rel="noopener">[#CSDN#] Gradle sync failed</a></li><li><a href="http://www.jianshu.com/p/fb11b02af8f2" target="_blank" rel="noopener">[#简书#] Android 构建速度</a></li><li><a href="http://blog.csdn.net/syif88/article/details/75009663" target="_blank" rel="noopener">[#CSDN#]  Error:All flavors must now belong to a named flavor dimension</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。&lt;br&gt;如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
     
   </entry>
   
@@ -159,6 +217,95 @@
   </entry>
   
   <entry>
+    <title>Android使用指定浏览器打开网页</title>
+    <link href="http://memmrf.top/2017/10/30/2017/Android%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5/"/>
+    <id>http://memmrf.top/2017/10/30/2017/Android使用指定浏览器打开网页/</id>
+    <published>2017-10-30T13:30:12.000Z</published>
+    <updated>2017-10-30T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>梳理下流程：</p><ol><li>枚举对应浏览器包名到数组中</li><li>数组循环根据包名找到对应的LaunchIntent</li><li>通过LaunchIntent找到对应的LaunchActivity的包名</li><li>Intent通过设置activity的包名+类名</li></ol></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 工具类</span><br><span class="line">*/</span><br><span class="line">public class CheckApkExist &#123;</span><br><span class="line">    private static String ucPkgName = &quot;com.uc.browser&quot;;</span><br><span class="line"></span><br><span class="line">    public static boolean checkApkExist(Context context, String packageName)&#123;</span><br><span class="line">        if (TextUtils.isEmpty(packageName))</span><br><span class="line">            return false;</span><br><span class="line">        try &#123;</span><br><span class="line">            ApplicationInfo info = context.getPackageManager()</span><br><span class="line">                    .getApplicationInfo(packageName,</span><br><span class="line">                            PackageManager.GET_UNINSTALLED_PACKAGES);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** 示例：uc 浏览器检测*/</span><br><span class="line">    public static boolean checkUCBrowserExist(Context context)&#123;</span><br><span class="line">        return checkApkExist(context, ucPkgName);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">*   从手机上搜索已安装浏览器程序打开网页,默认使用系统浏览器。</span><br><span class="line">*   将 context 替换为当前上下文环境，ActivityClass or  Context</span><br><span class="line">*/</span><br><span class="line">public void openBrowser(String url) &#123; </span><br><span class="line">            String[] browser = &#123;&quot;com.tencent.mtt&quot;, &quot;com.UCMobile&quot;, &quot;com.uc.browser&quot;, &quot;com.oupeng.browser&quot;, &quot;com.oupeng.mini.android&quot;, &quot;com.android.browser&quot;&#125;;</span><br><span class="line"></span><br><span class="line">            Intent intent = null;</span><br><span class="line">            for (String br : browser) &#123;</span><br><span class="line">                if (CheckApkExist.checkApkExist(context, br)) &#123;</span><br><span class="line">                    String clsName = null;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        PackageManager pm = context.getApplicationContext().getPackageManager();</span><br><span class="line">                        Intent intent1 = pm.getLaunchIntentForPackage(br);</span><br><span class="line">                        ComponentName act = intent1.resolveActivity(pm);</span><br><span class="line">                        clsName = act.getClassName();</span><br><span class="line">                    &#125; catch (Exception e) &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (clsName == null) &#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    intent = new Intent();</span><br><span class="line">                    intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                    Uri content_url = Uri.parse(url);</span><br><span class="line">                    intent.setData(content_url);</span><br><span class="line">                    intent.setClassName(br, clsName);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (intent == null) &#123;</span><br><span class="line">                intent = new Intent();</span><br><span class="line">                intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                Uri content_url = Uri.parse(url);</span><br><span class="line">                intent.setData(content_url);</span><br><span class="line">            &#125;</span><br><span class="line">            context.startActivity(intent);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;梳理下流程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;枚举对应浏览器包名到数组中&lt;/li&gt;
+&lt;li&gt;数组循环根据包名找到对应的LaunchIntent&lt;/li&gt;
+&lt;li&gt;通过LaunchIntent找到对应的LaunchActivity的包名&lt;/li&gt;
+&lt;li&gt;
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用sudo命令进行npm全局安装问题</title>
+    <link href="http://memmrf.top/2017/10/17/2017/%E6%B6%88%E9%99%A4Mac%E4%B8%8B%E4%BD%BF%E7%94%A8sudo%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8Cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85/"/>
+    <id>http://memmrf.top/2017/10/17/2017/消除Mac下使用sudo命令进行npm全局安装/</id>
+    <published>2017-10-17T13:30:12.000Z</published>
+    <updated>2017-10-17T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="http://www.jackpu.com/xiao-chu-macxia-npmquan-ju-an-zhuang-shi-yong-sudoming-ling/" target="_blank" rel="noopener">转~</a></p></blockquote><h3 id="权限问题-Permisiion-denied"><a href="#权限问题-Permisiion-denied" class="headerlink" title="权限问题 Permisiion denied"></a>权限问题 Permisiion denied</h3><p>请不要使用sudo进行安装，关于npm 取消sudo进行全局模块的安装你可以使用下面的命令：</p><blockquote><figure class="highlight plain"><figcaption><span>chmod 777</span><a href="/usr/local/lib/node_modules">```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果你看到了下面的报错</span><br></pre></td></tr></table></figure></blockquote><p>Error:permission denied.Please apply the write premission to the directory: “/Users/yourUserName”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我们建议你运行 `sudo chmod 777 ~` or `mkdir ~/.xtoolkit&amp;chmod 777 .xtoolkit` 来解决</span><br><span class="line"></span><br><span class="line">#### #Windows用户安装可能有fsevents模块报错</span><br></pre></td></tr></table></figure></p><p>Error:permission denied.Please apply the write premission to the directory: “/Users/yourUserName”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先你应该删除安装路径中`weex-toolkit`中的`node_modules`（路径可以在报错命令行中看到）,删除后运行下面的命令:</span><br></pre></td></tr></table></figure></p><p>npm install –no-optional weex-toolkit -g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 旧版本升级报错</span><br><span class="line">首先检查你的npm版本是否大于等于5.0，如果没有，请通过`npm update npm -g`升级。</span><br><span class="line">运行如下命令重新安装</span><br></pre></td></tr></table></figure></p><p>rm -rf ~/.xtoolkit<br>npm un weex-toolkit -g<br>npm i weex-toolkit -g<br>```</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.jackpu.com/xiao-chu-macxia-npmquan-ju-an-zhuang-shi-yong-sudoming-ling/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Node.js" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Setting ANDROID_HOME enviromental variable on MacOS-X</title>
+    <link href="http://memmrf.top/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/"/>
+    <id>http://memmrf.top/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/</id>
+    <published>2017-10-17T13:30:12.000Z</published>
+    <updated>2017-10-18T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x" target="_blank" rel="noopener">转自stackoverflow</a></p></blockquote><h4 id="Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it"><a href="#Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it" class="headerlink" title="Where the Android-SDK is installed depends on how you installed it."></a>Where the Android-SDK is installed depends on how you installed it.</h4><ul><li><ol><li>If you downloaded the SDK through their website and then dragged/dropped the Application to your Applications folder, it’s most likely here:<figure class="highlight plain"><figcaption><span>(as it is in your case). ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 2. If you installed the SDK using Homebrew (brew cask install android-sdk), then it&apos;s located here:</span><br><span class="line">``` /usr/local/Caskroom/android-sdk/&#123;YOUR_SDK_VERSION_NUMBER&#125;</span><br></pre></td></tr></table></figure></li></ol></li><li><ol><li>If the SDK was installed automatically as part of Android Studio then it’s located here:<figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Once you know the location, open a terminal window and enter the following (changing out the path to the SDK to be however you installed it):</span><br><span class="line">``` export ANDROID_HOME=&#123;YOUR_PATH&#125;</span><br></pre></td></tr></table></figure></li></ol></li></ul><h4 id="Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable"><a href="#Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable" class="headerlink" title="Once you have this set, you need to add this to the PATH environment variable:"></a>Once you have this set, you need to add this to the PATH environment variable:</h4><figure class="highlight plain"><figcaption><span>PATH</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Lastly apply these changes by re-sourcing .bash_profile:</span><br><span class="line">``` source ~/.bash_profile</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x&quot; target=&quot;_blank
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>weex开发环境搭建</title>
     <link href="http://memmrf.top/2017/09/29/2017/WEEX-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://memmrf.top/2017/09/29/2017/WEEX-开发环境搭建/</id>
@@ -213,6 +360,61 @@
     
     
       <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下使用gradlew命令注意事项</title>
+    <link href="http://memmrf.top/2017/09/20/2017/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8gradlew%E5%91%BD%E4%BB%A4%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://memmrf.top/2017/09/20/2017/Mac下使用gradlew命令注意事项/</id>
+    <published>2017-09-20T13:30:12.000Z</published>
+    <updated>2017-09-20T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天 发布代码到 bintray 时，使用 gradlew 命令出现几个小问题，特此记录一下。</p><h3 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h3><blockquote><p><strong><code>bash: ./gradlew:Permission denied</code></strong></p></blockquote><p>需要改变gradlew的权限，请执行命令解决：<code>chmod +x gradlew</code></p><h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><blockquote><p><strong><code>bash:gradlew :command not found</code></strong></p></blockquote><p>Mac 下执行这句指令，需要在<strong><code>gradlew</code></strong>前加 <code>./</code></p><p>例：<code>./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=你的 API key -PdryRun=false</code></p><p>具体上传步骤，参照了下面的文章：</p><blockquote><ol><li><a href="http://www.jianshu.com/p/1436a2caeddb" target="_blank" rel="noopener">Android快速发布项目到jcenter</a></li><li><a href="http://blog.csdn.net/xingshen58/article/details/51644599" target="_blank" rel="noopener">上传jcenter的“第一次”所遇到的坑 </a></li><li><a href="http://blog.csdn.net/u013424496/article/details/52684213" target="_blank" rel="noopener">Gradle 命令配置</a></li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天 发布代码到 bintray 时，使用 gradlew 命令出现几个小问题，特此记录一下。&lt;/p&gt;
+&lt;h3 id=&quot;问题1：&quot;&gt;&lt;a href=&quot;#问题1：&quot; class=&quot;headerlink&quot; title=&quot;问题1：&quot;&gt;&lt;/a&gt;问题1：&lt;/h3&gt;&lt;blockquot
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AndroidStudio上配置adb命令，实现无线真机调试</title>
+    <link href="http://memmrf.top/2017/09/19/2017/AndroidStudio%E4%B8%8A%E9%85%8D%E7%BD%AEadb%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BA%BF%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/"/>
+    <id>http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/</id>
+    <published>2017-09-19T13:30:12.000Z</published>
+    <updated>2017-09-19T13:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-配置-adb-命令"><a href="#1-配置-adb-命令" class="headerlink" title="1. 配置 adb 命令"></a>1. 配置 adb 命令</h2><p>一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入<code>adb devices</code> 后，缺提示 <code>bash: adb: command not found</code> 。好吧，让我来先配置一下环境变量（<code>Mac OS 10.12.6</code> <code>jdk1.8.0_121</code>）。</p><blockquote><p>1.Mac下打开终端：Launchpad -&gt; 其他 -&gt; 终端<br>2.输入：<code>touch .bash_profile</code><br>3.打开：<code>open -e .bash_profile</code><br>4.保存：<code>source .bash_profile</code></p></blockquote><p>其中进行第3步，打开的 <strong>.bash_profile</strong> 文件，文件的路径一定要改成你自己电脑中的具体路径。</p><p>我电脑中配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH:/Users/xiaomi/Library/Android/sdk/tools/:/Users/xiaomi/Library/Android/sdk/platform-tools/</span><br><span class="line"></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM into a shell session *as a function*</span><br></pre></td></tr></table></figure></p><p><strong>注意：</strong> <em>PATH</em> 变量中的 Android/sdk/tools 路径。</p><p>执行 <code>source .bash_profile</code> 后，<br>输入 <code>adb</code> 命令，可见控制台输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Android Debug Bridge version 1.0.39</span><br><span class="line">Revision 5943271ace17-android</span><br><span class="line"></span><br><span class="line">global options:</span><br><span class="line"> -a         listen on all network interfaces, not just localhost</span><br><span class="line"> -d         use USB device (error if multiple devices connected)</span><br><span class="line"> -e         use TCP/IP device (error if multiple TCP/IP devices available)</span><br><span class="line"> -s SERIAL</span><br><span class="line">     use device with given serial number (overrides $ANDROID_SERIAL)</span><br><span class="line"> -p PRODUCT</span><br><span class="line">     name or path (&apos;angler&apos;/&apos;out/target/product/angler&apos;);</span><br><span class="line">     default $ANDROID_PRODUCT_OUT</span><br><span class="line"> -H         name of adb server host [default=localhost]</span><br><span class="line"> -P         port of adb server [default=5037]</span><br><span class="line"> -L SOCKET  listen on given socket for adb server [default=tcp:localhost:5037]</span><br><span class="line"></span><br><span class="line">general commands:</span><br><span class="line"> devices [-l]             list connected devices (-l for long output)</span><br><span class="line"> help                     show this help message</span><br><span class="line"> version                  show version num</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p><p>OK~ 你该明白了吧。</p><h2 id="2-AS-中手动实现无线真机调试"><a href="#2-AS-中手动实现无线真机调试" class="headerlink" title="2. AS 中手动实现无线真机调试"></a>2. AS 中手动实现无线真机调试</h2><p>无线真机调试很简单，无需插件，无需 Root，使用插件反而会将这个流程复杂化。先放上 <em>纯流程版</em> ，方便阅读之后快速查阅，</p><h3 id="纯流程版"><a href="#纯流程版" class="headerlink" title="纯流程版"></a>纯流程版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 将手机与电脑连接在同一局域网内</span><br><span class="line">2. 手机用线连接电脑，控制台输入命令adb devices, 有设备编号为连接成功</span><br><span class="line">3. 拔手机线，控制台输入命令 adb tcpip 5555，将TCP模式在 5555 端口启动，无任何输出为成功启动</span><br><span class="line">4. 控制台输入命令 adb connect 192.168.56.101:5555</span><br><span class="line">其中：192.168.56.101 为手机在局域网的 ip 地址，输出连接成功</span><br><span class="line">此时无线连接已经成功，正常调试即可</span><br></pre></td></tr></table></figure><h3 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h3><p>打开 <strong>命令行终端</strong> ，键入<code>adb devices</code>，这个命令会输出所有连接到这台电脑上的设备，每个设备有一个独一无二的序列号。<br>见图 : </p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p><p><strong>进行无线连接</strong></p><p>输入命令<code>adb tcpip 5555</code>，这个命令的作用是打开手机的 TCP 模式，并且将其绑定到 5555 接口。其中，5555 端口是一个习惯使用的端口，就像 MySql 一般使用 3306 端口一样，也可以随意指定，只要不产生端口冲突即可。</p><p>这条命令执行后没有任何输出，但是手机会出现一次，类似于与电脑断线并且重新插线的反应，代表执行成功。<br>打开成功之后，就可以拔掉手机数据线了。</p><p>接下来执行连接命令，但是首先我们需要进入手机 WIFI 网络详情，找到此时手机 WIFI 中的 IP 地址。接下来就可以执行连接命令了，连接命令为 adb connect 手机 IP 地址: TCP 绑定的端口。</p><p>例如，我手机的 IP 地址是 192.168.31.93，之前 TCP 模式绑定的端口为 5555，此时我需要执行的连接命令为 <code>adb connect 192.168.31.93:5555</code><br>此时控制台输出 connected to 192.168.31.93:5555，表示无线连接成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-82345073af59d522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="无线连接.png"></p><p>TCP 模式一旦开启，只在手机重启时才会关闭，关闭后如果还需使用需要重新开启。断网重连，换 WIFI，不会关闭，只要保持手机电脑在统一 WIFI 下就不需要重新开启。</p><p>不过如果手机一旦断网，或者切换 WIFI，与电脑的无线连接会立即断开，如果需要重新连接，重新执行一次 <code>adb connect</code> 命令就好。</p><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>在项目中，直接点击 <strong>run</strong>，选择连接的设备即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-062796b8693c088d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="连接手机调试"></p><p>然后，就可以开心的调试了。</p><h2 id="3-补充：连接多台设备"><a href="#3-补充：连接多台设备" class="headerlink" title="3. 补充：连接多台设备"></a>3. 补充：连接多台设备</h2><p>使用<code>adb devices</code> 命令，可以得到一个已连接设备的序列号表，一次连接多台设备跟连接一台设备流程类似，通过 『<strong>序列号指定设备</strong> 』即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-e077378d8ef5293b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="模拟器和手机同时连接.png"></p><p>例如，需要进行 TCP 模式开启，<code>adb -s f87c75bb tcpip 5555</code>，但是与电脑建立连接的 adb connect 命令不需要加序列号，因为 IP 地址本来就相当于是序列号了。</p><p>然后，查看手机连接的IPv4地址，比如我的是：192.168.0.200<br>执行 <code>adb connect 192.168.0.200:5555</code></p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-c5e2b5412dd95c07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p><p>接下来，请开始你的调试吧。</p><blockquote><p>个人整理，难免有错误纰漏，欢迎指正。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-配置-adb-命令&quot;&gt;&lt;a href=&quot;#1-配置-adb-命令&quot; class=&quot;headerlink&quot; title=&quot;1. 配置 adb 命令&quot;&gt;&lt;/a&gt;1. 配置 adb 命令&lt;/h2&gt;&lt;p&gt;一直想在AndroidStudio的Terminal中 输入 a
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
     
   </entry>
   

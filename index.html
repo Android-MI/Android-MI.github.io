@@ -274,6 +274,242 @@
   
   
 
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2018/01/30/2018/Android-定时器、定时任务整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小米`s">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小米`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/30/2018/Android-定时器、定时任务整理/" itemprop="url">Android 定时器、定时任务整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-30T13:30:12+00:00">
+                2018-01-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-01-30T13:32:22+00:00">
+                2018-01-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/30/2018/Android-定时器、定时任务整理/" class="leancloud_visitors" data-flag-title="Android 定时器、定时任务整理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"><span>°C</span></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  712 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-ScheduledExecutorService"><a href="#1-ScheduledExecutorService" class="headerlink" title="1. ScheduledExecutorService"></a>1. ScheduledExecutorService</h2><ol>
+<li><p>Timer不支持多线程。全部挂在Timer下的任务都是单线程的，任务仅仅能串行运行。假设当中一个任务运行时间过长。会影响到其它任务的运行，然后就可能会有各种接踵而来的问题。</p>
+</li>
+<li><p>Timer的线程不捕获异常。TimerTask假设抛出异常，那么Timer唯一的进程就会挂掉，这样挂在Timer下的全部任务都会无法继续运行。</p>
+<p> 为了弥补Timer的缺陷，jdk1.5中引入了并发包。这里面提供的ScheduledExecutorService。详细实现类是：ScheduledThreadPoolExecutor。ScheduledThreadPoolExecutor支持多线程。同一时候在线程中对异常进行了捕获。</p>
+<p>使用实例：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Task2 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line">	@SuppressWarnings(&quot;deprecation&quot;)</span><br><span class="line">	@Override</span><br><span class="line">	public void run() &#123;</span><br><span class="line">		System.out.println(&quot;----task2 start--------&quot;+new Date().toLocaleString());</span><br><span class="line">		try &#123;</span><br><span class="line">			Thread.sleep(5000);</span><br><span class="line">		&#125; catch (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;----5s later, task2 end--------&quot;+new Date().toLocaleString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">		ScheduledExecutorService pool = Executors.newScheduledThreadPool(2);//启用2个线程</span><br><span class="line">		</span><br><span class="line">		Task1 t1 = new Task1();</span><br><span class="line">		// 马上运行，任务消耗3秒。运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">		pool.scheduleWithFixedDelay(t1, 0, 2, TimeUnit.SECONDS);</span><br><span class="line">		</span><br><span class="line">		// 马上运行，任务消耗5秒，运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">		Task2 t2 = new Task2();</span><br><span class="line">		pool.scheduleWithFixedDelay(t2, 0, 2, TimeUnit.SECONDS);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="http://upload-images.jianshu.io/upload_images/1552105-89b0568020832ccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果.png"></p>
+<p>这样任务之间就不会相互影响了。并且能够同一时候运行。可是线程数量要设置好了。</p>
+<h4 id="在Android-使用也是如此："><a href="#在Android-使用也是如此：" class="headerlink" title="在Android 使用也是如此："></a>在Android 使用也是如此：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private ScheduledExecutorService scheduleTaskExecutor;</span><br><span class="line"></span><br><span class="line">scheduleTaskExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactory() &#123;</span><br><span class="line">                    private AtomicInteger atoInteger = new AtomicInteger(0);</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public Thread newThread(Runnable r) &#123;</span><br><span class="line">                        Thread t = new Thread(r);</span><br><span class="line">                        t.setName(&quot;App-Thread&quot; + atoInteger.getAndIncrement());</span><br><span class="line">                        return t;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">// 开启执行</span><br><span class="line">private void startScheduledTask() &#123;</span><br><span class="line">        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPDATE_DATA;</span><br><span class="line">                mHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1, 3, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        if (scheduleTaskExecutor != null &amp;&amp; !scheduleTaskExecutor.isShutdown()) &#123;</span><br><span class="line">            scheduleTaskExecutor.shutdown();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-Timer定时器"><a href="#2-Timer定时器" class="headerlink" title="2. Timer定时器"></a>2. Timer定时器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private Timer mTimer;</span><br><span class="line">mTimer = new Timer();</span><br><span class="line"></span><br><span class="line">// 开启任务</span><br><span class="line">private void startTimerTask() &#123;</span><br><span class="line">        mTimer.schedule(new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPLOAD_RIDING_LBS;</span><br><span class="line">                mMapLocHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1000, 3000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 取消任务</span><br><span class="line">private void cancelTask()&#123;</span><br><span class="line">        if (mTimer != null) &#123;</span><br><span class="line">            mTimer.cancel();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-定时器的三种方法"><a href="#3-定时器的三种方法" class="headerlink" title="3.定时器的三种方法"></a>3.定时器的三种方法</h2><ol>
+<li>第一种方法:Thread.sleep();方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                while (true) &#123;</span><br><span class="line">                    mHandler.sendEmptyMessage(0);</span><br><span class="line">                    try &#123;</span><br><span class="line">                        Thread.sleep(1000);</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">new Thread(runnable).start();</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第二种方法:Handler的postDelay()方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">final Runnable runnable = new Runnable() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               if (isStart2) &#123;</span><br><span class="line">                   mHandler.sendEmptyMessage(0);</span><br><span class="line">                   mHandler.postDelayed(this, 1000);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">mHandler.postDelayed(runnable, 1000);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第三种:Timer和TimerTask</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> private Timer timer = new Timer();</span><br><span class="line">        private TimerTask timerTask = new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                mHandler.sendEmptyMessage(0);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">timer.schedule(timerTask, 1000, 1000);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+       
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
   <article class="post post-type-picture" itemscope itemtype="http://schema.org/Article">
   
   
@@ -306,6 +542,225 @@
           
             <a href="/2018/01/01/2018/Hello-2018/"><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="https://ooo.0o0.ooo/2017/12/31/5a4902c63fb80.jpg" alt="hello2018.jpg"></div></div><div class="group-picture-row"></div></div></div>
 </a>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+       
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/12/18/2017/AndroidStudio-3.0-的一些变化及IDE配置问题整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小米`s">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小米`s Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/18/2017/AndroidStudio-3.0-的一些变化及IDE配置问题整理/" itemprop="url">AndroidStudio 3.0的一些变化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T13:30:12+00:00">
+                2017-12-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-12-18T13:32:22+00:00">
+                2017-12-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/18/2017/AndroidStudio-3.0-的一些变化及IDE配置问题整理/" class="leancloud_visitors" data-flag-title="AndroidStudio 3.0的一些变化">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"><span>°C</span></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  102 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。<br>如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。</p>
+</blockquote>
+<ol>
+<li><a href="http://blog.csdn.net/u011315960/article/details/78365629" target="_blank" rel="noopener">[#CSDN#] Android Studio 3.0 的一些变化</a></li>
+<li><a href="http://blog.csdn.net/yechaoa/article/details/78363911" target="_blank" rel="noopener">[#CSDN#] Gradle sync failed</a></li>
+<li><a href="http://www.jianshu.com/p/fb11b02af8f2" target="_blank" rel="noopener">[#简书#] Android 构建速度</a></li>
+<li><a href="http://blog.csdn.net/syif88/article/details/75009663" target="_blank" rel="noopener">[#CSDN#]  Error:All flavors must now belong to a named flavor dimension</a></li>
+</ol>
+
           
         
       
@@ -1242,7 +1697,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/09/29/2017/WEEX-开发环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/10/30/2017/Android使用指定浏览器打开网页/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小米`s">
@@ -1261,7 +1716,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/29/2017/WEEX-开发环境搭建/" itemprop="url">weex开发环境搭建</a></h1>
+                <a class="post-title-link" href="/2017/10/30/2017/Android使用指定浏览器打开网页/" itemprop="url">Android使用指定浏览器打开网页</a></h1>
         
 
         <div class="post-meta">
@@ -1273,8 +1728,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T12:00:00+00:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T13:30:12+00:00">
+                2017-10-30
               </time>
             
 
@@ -1289,8 +1744,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-29T14:00:00+00:00">
-                2017-09-29
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-30T13:32:22+00:00">
+                2017-10-30
               </time>
             
           </span>
@@ -1319,8 +1774,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/Weex/" itemprop="url" rel="index">
-                    <span itemprop="name">Weex</span>
+                  <a href="/categories/工作/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -1336,7 +1791,7 @@
 
           
           
-             <span id="/2017/09/29/2017/WEEX-开发环境搭建/" class="leancloud_visitors" data-flag-title="weex开发环境搭建">
+             <span id="/2017/10/30/2017/Android使用指定浏览器打开网页/" class="leancloud_visitors" data-flag-title="Android使用指定浏览器打开网页">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1361,7 +1816,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  689 字
+                  332 字
                 </span>
               
 
@@ -1377,7 +1832,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -1400,58 +1855,17 @@
       
         
           
-            <p><strong>~『 NO. 1 安装依赖 』</strong></p>
-<blockquote>
-<p>Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要 Node.js 和 <a href="https://github.com/weexteam/weex-toolkit" target="_blank" rel="noopener">Weex CLi</a>。</p>
-<p><code>Node.js</code> 安装方式，请移步 <a href="http://www.jianshu.com/p/3d7c3f5ecf1f" target="_blank" rel="noopener">Node.js 安装</a></p>
-</blockquote>
-<p>安装完成后，可以使用以下命令检测是否安装成功：</p>
-<blockquote>
-<p>$ <code>node -v</code><br>v6.11.3<br>$ <code>npm -v</code><br>3.10.10 </p>
-</blockquote>
-<p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p>
-<p>注意: 在 <code>weex-toolkit</code>1.0.8 版本后添加了npm5规范的 <code>npm-shrinkwrap.json</code>用于锁定包依赖，故npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code><br>更新一下npm的版本，使用前请确认版本是否正确。</p>
-<blockquote>
-<p>$<code>npm install -g weex-toolkit</code><br>$ <code>weex -v</code>//查看当前weex版本</p>
-</blockquote>
-<p>weex-toolkit也支持直接升级子依赖，如：</p>
-<blockquote>
-<p><code>weex update weex-devtool@latest</code>//@后标注版本后，latest表示最新</p>
-</blockquote>
-<p>提示：<br>如果提示权限错误（<em>permission error</em>），使用 <code>sudo</code>关键字进行安装</p>
-<blockquote>
-<p>$ <code>sudo npm install -g weex-toolkit</code></p>
-</blockquote>
-<p>安装结束后你可以直接使用 <code>weex</code> 命令验证是否安装成功，它会显示  <code>weex</code>命令行工具各参数：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-b1d127f85238eed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/840" alt="weex 命令行工具各参数.png"></p>
-<p><strong>~『 NO. 2 初始化 』</strong></p>
-<p>然后初始化 Weex 项目：</p>
-<blockquote>
-<p>$ <code>weex create awesome-project</code></p>
-</blockquote>
-<p>执行完命令后，在 <code>awesome-project</code> 目录中就创建了一个使用 Weex 和 Vue 的模板项目</p>
-<p><strong>~『 NO. 3  开发』</strong></p>
-<p>之后我们进入项目所在路径，<code>weex-toolkit</code> 已经为我们生成了标准项目结构。<br>在 <code>package.json</code>中，已经配置好了几个常用的 npm script，分别是：</p>
-<ul>
-<li><code>build</code>: 源码打包，生成 JS Bundle</li>
-<li><code>dev</code>: webpack watch 模式，方便开发</li>
-<li><code>serve</code>: 开启HotReload服务器，代码改动的将会实时同步到网页中</li>
-</ul>
-<p>我们先通过<code>npm install</code>安装项目依赖。之后运行根目录下的<code>npm run dev &amp; npm run serve</code>开启 watch 模式和静态服务器。</p>
-<p>然后我们打开浏览器，进入 <a href="http://localhost:8080/index.html" target="_blank" rel="noopener">http://localhost:8080/index.html</a> 即可看到 weex h5 页面。</p>
-<p>初始化时已经为我们创建了基本的示例，我们可以在<code>src/index.vue</code>中查看。</p>
-<p>代码如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot; @click=&quot;update&quot;&gt;</span><br><span class="line">    &lt;image :src=&quot;logoUrl&quot; class=&quot;logo&quot;&gt;&lt;/image&gt;</span><br><span class="line">    &lt;text class=&quot;title&quot;&gt;Hello &#123;&#123;target&#125;&#125;&lt;/text&gt;</span><br><span class="line">    &lt;text class=&quot;desc&quot;&gt;Now, let&apos;s use vue to build your weex app.&lt;/text&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .wrapper &#123; align-items: center; margin-top: 120px; &#125;</span><br><span class="line">  .title &#123; padding-top:40px; padding-bottom: 40px; font-size: 48px; &#125;</span><br><span class="line">  .logo &#123; width: 360px; height: 156px; &#125;</span><br><span class="line">  .desc &#123; padding-top: 20px; color:#888; font-size: 24px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">      logoUrl: &apos;http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png&apos;,</span><br><span class="line">      target: &apos;World&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      update: function (e) &#123;</span><br><span class="line">        this.target = &apos;Weex&apos;</span><br><span class="line">        console.log(&apos;target:&apos;, this.target)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
+            <blockquote>
+<p>梳理下流程：</p>
 <ol>
-<li>关于 Weex 语法部分，你可以直接参考 <a href="https://vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue Guide</a></li>
-<li>你可以在 <a href="http://dotwe.org/vue/d48fbf8e8b2bb7bf555d0c380902eb37" target="_blank" rel="noopener">dotWe</a> 写代码并随时预览。</li>
-<li><a href="https://weex.apache.org/cn/guide/tools/toolkit.html" target="_blank" rel="noopener">weex-toolkit 使用说明，请移步官网查看</a></li>
-<li><a href="https://weex.apache.org/cn/playground.html" target="_blank" rel="noopener">Weex Playground 工具</a></li>
-<li><a href="https://market.dotwe.org/#7" target="_blank" rel="noopener">Weex Market</a></li>
-<li><a href="https://weex.apache.org/cn/guide/tools/plugin.html" target="_blank" rel="noopener">Weex语法支持插件</a></li>
+<li>枚举对应浏览器包名到数组中</li>
+<li>数组循环根据包名找到对应的LaunchIntent</li>
+<li>通过LaunchIntent找到对应的LaunchActivity的包名</li>
+<li>Intent通过设置activity的包名+类名</li>
 </ol>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 工具类</span><br><span class="line">*/</span><br><span class="line">public class CheckApkExist &#123;</span><br><span class="line">    private static String ucPkgName = &quot;com.uc.browser&quot;;</span><br><span class="line"></span><br><span class="line">    public static boolean checkApkExist(Context context, String packageName)&#123;</span><br><span class="line">        if (TextUtils.isEmpty(packageName))</span><br><span class="line">            return false;</span><br><span class="line">        try &#123;</span><br><span class="line">            ApplicationInfo info = context.getPackageManager()</span><br><span class="line">                    .getApplicationInfo(packageName,</span><br><span class="line">                            PackageManager.GET_UNINSTALLED_PACKAGES);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** 示例：uc 浏览器检测*/</span><br><span class="line">    public static boolean checkUCBrowserExist(Context context)&#123;</span><br><span class="line">        return checkApkExist(context, ucPkgName);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">*   从手机上搜索已安装浏览器程序打开网页,默认使用系统浏览器。</span><br><span class="line">*   将 context 替换为当前上下文环境，ActivityClass or  Context</span><br><span class="line">*/</span><br><span class="line">public void openBrowser(String url) &#123; </span><br><span class="line">            String[] browser = &#123;&quot;com.tencent.mtt&quot;, &quot;com.UCMobile&quot;, &quot;com.uc.browser&quot;, &quot;com.oupeng.browser&quot;, &quot;com.oupeng.mini.android&quot;, &quot;com.android.browser&quot;&#125;;</span><br><span class="line"></span><br><span class="line">            Intent intent = null;</span><br><span class="line">            for (String br : browser) &#123;</span><br><span class="line">                if (CheckApkExist.checkApkExist(context, br)) &#123;</span><br><span class="line">                    String clsName = null;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        PackageManager pm = context.getApplicationContext().getPackageManager();</span><br><span class="line">                        Intent intent1 = pm.getLaunchIntentForPackage(br);</span><br><span class="line">                        ComponentName act = intent1.resolveActivity(pm);</span><br><span class="line">                        clsName = act.getClassName();</span><br><span class="line">                    &#125; catch (Exception e) &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (clsName == null) &#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    intent = new Intent();</span><br><span class="line">                    intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                    Uri content_url = Uri.parse(url);</span><br><span class="line">                    intent.setData(content_url);</span><br><span class="line">                    intent.setClassName(br, clsName);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (intent == null) &#123;</span><br><span class="line">                intent = new Intent();</span><br><span class="line">                intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                Uri content_url = Uri.parse(url);</span><br><span class="line">                intent.setData(content_url);</span><br><span class="line">            &#125;</span><br><span class="line">            context.startActivity(intent);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1504,7 +1918,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/09/29/2017/安装Node.js/">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/10/17/2017/消除Mac下使用sudo命令进行npm全局安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小米`s">
@@ -1523,7 +1937,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/29/2017/安装Node.js/" itemprop="url">安装 Node.js</a></h1>
+                <a class="post-title-link" href="/2017/10/17/2017/消除Mac下使用sudo命令进行npm全局安装/" itemprop="url">使用sudo命令进行npm全局安装问题</a></h1>
         
 
         <div class="post-meta">
@@ -1535,8 +1949,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-29T12:00:00+00:00">
-                2017-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T13:30:12+00:00">
+                2017-10-17
               </time>
             
 
@@ -1551,8 +1965,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-29T14:00:00+00:00">
-                2017-09-29
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-17T13:32:22+00:00">
+                2017-10-17
               </time>
             
           </span>
@@ -1598,7 +2012,7 @@
 
           
           
-             <span id="/2017/09/29/2017/安装Node.js/" class="leancloud_visitors" data-flag-title="安装 Node.js">
+             <span id="/2017/10/17/2017/消除Mac下使用sudo命令进行npm全局安装/" class="leancloud_visitors" data-flag-title="使用sudo命令进行npm全局安装问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1623,7 +2037,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  189 字
+                  228 字
                 </span>
               
 
@@ -1662,28 +2076,17 @@
       
         
           
-            <p><strong>~『 NO. 1 』</strong></p>
-<blockquote>
-<p>安装 <code>Node.js</code> 方式多种多样，最简单的方式是在 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js 官网</a> 下载可执行程序直接安装即可。</p>
+            <blockquote>
+<p><a href="http://www.jackpu.com/xiao-chu-macxia-npmquan-ju-an-zhuang-shi-yong-sudoming-ling/" target="_blank" rel="noopener">转~</a></p>
 </blockquote>
-<p>对于 Mac，可以使用 <a href="http://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 进行安装：<br><code>brew install node</code></p>
+<h3 id="权限问题-Permisiion-denied"><a href="#权限问题-Permisiion-denied" class="headerlink" title="权限问题 Permisiion denied"></a>权限问题 Permisiion denied</h3><p>请不要使用sudo进行安装，关于npm 取消sudo进行全局模块的安装你可以使用下面的命令：</p>
 <blockquote>
-<p>更多安装方式可参考 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 官方信息</a></p>
+<figure class="highlight plain"><figcaption><span>chmod 777</span><a href="/usr/local/lib/node_modules">```</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果你看到了下面的报错</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>安装完成后，可以使用以下命令检测是否安装成功：</p>
-<blockquote>
-<p>$ node -v<br>v6.11.3<br>$ npm -v<br>3.10.10 </p>
-</blockquote>
-<p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p>
-<p><strong>~『 NO. 2 』</strong></p>
-<blockquote>
-<p>npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code>更新一下npm的版本，使用前请确认版本是否正确。</p>
-</blockquote>
-<p><strong>~『 NO. 3 』</strong></p>
-<blockquote>
-<p>国内开发者可以考虑使用淘宝的 npm 镜像 —— <a href="https://npm.taobao.org/" target="_blank" rel="noopener">cnpm</a> 安装 weex-toolkit</p>
-<p>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
-</blockquote>
+<p>Error:permission denied.Please apply the write premission to the directory: “/Users/yourUserName”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我们建议你运行 `sudo chmod 777 ~` or `mkdir ~/.xtoolkit&amp;chmod 777 .xtoolkit` 来解决</span><br><span class="line"></span><br><span class="line">#### #Windows用户安装可能有fsevents模块报错</span><br></pre></td></tr></table></figure></p>
+<p>Error:permission denied.Please apply the write premission to the directory: “/Users/yourUserName”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">首先你应该删除安装路径中`weex-toolkit`中的`node_modules`（路径可以在报错命令行中看到）,删除后运行下面的命令:</span><br></pre></td></tr></table></figure></p>
+<p>npm install –no-optional weex-toolkit -g<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 旧版本升级报错</span><br><span class="line">首先检查你的npm版本是否大于等于5.0，如果没有，请通过`npm update npm -g`升级。</span><br><span class="line">运行如下命令重新安装</span><br></pre></td></tr></table></figure></p>
+<p>rm -rf ~/.xtoolkit<br>npm un weex-toolkit -g<br>npm i weex-toolkit -g<br>```</p>
 
           
         
@@ -1731,12 +2134,12 @@
   
   
 
-  <article class="post post-type-hexo" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/02/03/2017/Hexo-相关问题收集/">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小米`s">
@@ -1755,7 +2158,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/03/2017/Hexo-相关问题收集/" itemprop="url">Hexo相关问题收集</a></h1>
+                <a class="post-title-link" href="/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/" itemprop="url">Setting ANDROID_HOME enviromental variable on MacOS-X</a></h1>
         
 
         <div class="post-meta">
@@ -1767,8 +2170,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-03T13:30:12+00:00">
-                2017-02-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-17T13:30:12+00:00">
+                2017-10-17
               </time>
             
 
@@ -1783,8 +2186,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-02-12T13:32:22+00:00">
-                2017-02-12
+              <time title="更新于" itemprop="dateModified" datetime="2017-10-18T13:32:22+00:00">
+                2017-10-18
               </time>
             
           </span>
@@ -1802,8 +2205,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/博客/" itemprop="url" rel="index">
-                    <span itemprop="name">博客</span>
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
                   </a>
                 </span>
 
@@ -1813,8 +2216,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/博客/Hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo</span>
+                  <a href="/categories/工作/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
                   </a>
                 </span>
 
@@ -1830,7 +2233,7 @@
 
           
           
-             <span id="/2017/02/03/2017/Hexo-相关问题收集/" class="leancloud_visitors" data-flag-title="Hexo相关问题收集">
+             <span id="/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/" class="leancloud_visitors" data-flag-title="Setting ANDROID_HOME enviromental variable on MacOS-X">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1855,7 +2258,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  56 字
+                  148 字
                 </span>
               
 
@@ -1894,18 +2297,22 @@
       
         
           
-            <h3 id="文章收集"><a href="#文章收集" class="headerlink" title="文章收集"></a>文章收集</h3><ul>
-<li><a href="https://www.jianshu.com/p/e7413116e9d4" target="_blank" rel="noopener">Hexo搭建</a></li>
-<li><a href="https://segmentfault.com/a/1190000004714256" target="_blank" rel="noopener"><a href="https://segmentfault.com/a/1190000004714256" target="_blank" rel="noopener">自动化部署Hexo</a></a></li>
-<li><a href="https://www.jianshu.com/p/5691815b81b6" target="_blank" rel="noopener">部署Hexo博客1</a></li>
-<li><a href="http://blog.csdn.net/woblog/article/details/51319364" target="_blank" rel="noopener">部署Hexo博客2</a></li>
-<li><a href="http://uchuhimo.me/2017/04/11/genesis/" target="_blank" rel="noopener">Hexo搭建与部署</a></li>
-<li><a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud" target="_blank" rel="noopener">为NexT主题添加文章阅读量统计功能</a></li>
+            <blockquote>
+<p><a href="https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x" target="_blank" rel="noopener">转自stackoverflow</a></p>
+</blockquote>
+<h4 id="Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it"><a href="#Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it" class="headerlink" title="Where the Android-SDK is installed depends on how you installed it."></a>Where the Android-SDK is installed depends on how you installed it.</h4><ul>
+<li><ol>
+<li>If you downloaded the SDK through their website and then dragged/dropped the Application to your Applications folder, it’s most likely here:<figure class="highlight plain"><figcaption><span>(as it is in your case). ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 2. If you installed the SDK using Homebrew (brew cask install android-sdk), then it&apos;s located here:</span><br><span class="line">``` /usr/local/Caskroom/android-sdk/&#123;YOUR_SDK_VERSION_NUMBER&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>If the SDK was installed automatically as part of Android Studio then it’s located here:<figure class="highlight plain"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Once you know the location, open a terminal window and enter the following (changing out the path to the SDK to be however you installed it):</span><br><span class="line">``` export ANDROID_HOME=&#123;YOUR_PATH&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
 </ul>
-<h4 id="主题搜集"><a href="#主题搜集" class="headerlink" title="主题搜集"></a>主题搜集</h4><ul>
-<li><a href="http://powman.org/archives/theme-prontera.html" target="_blank" rel="noopener">prontera</a></li>
-<li><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">next</a><br><a href="https://www.jianshu.com/p/f054333ac9e6" target="_blank" rel="noopener">https://www.jianshu.com/p/f054333ac9e6</a></li>
-</ul>
+<h4 id="Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable"><a href="#Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable" class="headerlink" title="Once you have this set, you need to add this to the PATH environment variable:"></a>Once you have this set, you need to add this to the PATH environment variable:</h4><figure class="highlight plain"><figcaption><span>PATH</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### Lastly apply these changes by re-sourcing .bash_profile:</span><br><span class="line">``` source ~/.bash_profile</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1948,6 +2355,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1995,7 +2406,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2006,7 +2417,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2017,7 +2428,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2101,7 +2512,7 @@
 
 
 <div class="theme-info">
-  <div class="powered-by">津ICP备17007097号-1  <i class="fa fa-envira"></i>  <span class="post-count">博客全站共 1.7k 字</span></div>
+  <div class="powered-by">津ICP备17007097号-1  <i class="fa fa-envira"></i>  <span class="post-count">博客全站共 4.6k 字</span></div>
 
 </div>
 
