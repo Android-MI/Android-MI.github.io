@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="Springboot," />
 
 
 
@@ -86,24 +86,22 @@
 
 
 
-<meta name="description" content="1. 配置 adb 命令一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入adb devices 后，缺提示 bash: adb: command not found 。好吧，让我来先配置一下环境变量（Mac OS 10.12.6 jdk1.8.0_121）。  1.Mac下打开终端：Launchpad -&amp;g">
-<meta name="keywords" content="Android">
+<meta name="description" content="版本： Intellij IDEA 2017.3  1. 引入插件引入热加载的插件，springboot 1.3开始就有的… 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/artifa">
+<meta name="keywords" content="Springboot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AndroidStudio上配置adb命令，实现无线真机调试">
-<meta property="og:url" content="http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/index.html">
+<meta property="og:title" content="SpringBoot项目在IDEA中实现热部署">
+<meta property="og:url" content="http://memmrf.top/2018/07/29/2018/SpringBoot项目在IDEA中实现热部署/index.html">
 <meta property="og:site_name" content="小米`s Blog">
-<meta property="og:description" content="1. 配置 adb 命令一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入adb devices 后，缺提示 bash: adb: command not found 。好吧，让我来先配置一下环境变量（Mac OS 10.12.6 jdk1.8.0_121）。  1.Mac下打开终端：Launchpad -&amp;g">
+<meta property="og:description" content="版本： Intellij IDEA 2017.3  1. 引入插件引入热加载的插件，springboot 1.3开始就有的… 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/artifa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1552105-82345073af59d522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1552105-062796b8693c088d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1552105-e077378d8ef5293b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1552105-c5e2b5412dd95c07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
-<meta property="og:updated_time" content="2017-09-19T13:32:22.000Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1552105-1d6baae9f115170b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1552105-3598a1828697e483.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1552105-ca65db85c2ae5a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940">
+<meta property="og:updated_time" content="2018-07-30T11:00:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AndroidStudio上配置adb命令，实现无线真机调试">
-<meta name="twitter:description" content="1. 配置 adb 命令一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入adb devices 后，缺提示 bash: adb: command not found 。好吧，让我来先配置一下环境变量（Mac OS 10.12.6 jdk1.8.0_121）。  1.Mac下打开终端：Launchpad -&amp;g">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640">
+<meta name="twitter:title" content="SpringBoot项目在IDEA中实现热部署">
+<meta name="twitter:description" content="版本： Intellij IDEA 2017.3  1. 引入插件引入热加载的插件，springboot 1.3开始就有的… 12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;    &amp;lt;artifactId&amp;gt;spring-boot-devtools&amp;lt;/artifa">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1552105-1d6baae9f115170b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940">
 
 
 
@@ -133,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/"/>
+  <link rel="canonical" href="http://memmrf.top/2018/07/29/2018/SpringBoot项目在IDEA中实现热部署/"/>
 
 
 
 
 
-  <title>AndroidStudio上配置adb命令，实现无线真机调试 | 小米`s Blog</title>
+  <title>SpringBoot项目在IDEA中实现热部署 | 小米`s Blog</title>
   
 
 
@@ -286,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/">
+    <link itemprop="mainEntityOfPage" href="http://memmrf.top/2018/07/29/2018/SpringBoot项目在IDEA中实现热部署/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小米`s">
@@ -303,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AndroidStudio上配置adb命令，实现无线真机调试</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot项目在IDEA中实现热部署</h1>
         
 
         <div class="post-meta">
@@ -315,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-19T13:30:12+00:00">
-                2017-09-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-29T13:30:12+00:00">
+                2018-07-29
               </time>
             
 
@@ -331,8 +329,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-09-19T13:32:22+00:00">
-                2017-09-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-30T11:00:12+00:00">
+                2018-07-30
               </time>
             
           </span>
@@ -361,8 +359,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/工作/Springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">Springboot</span>
                   </a>
                 </span>
 
@@ -378,7 +376,7 @@
 
           
           
-             <span id="/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/" class="leancloud_visitors" data-flag-title="AndroidStudio上配置adb命令，实现无线真机调试">
+             <span id="/2018/07/29/2018/SpringBoot项目在IDEA中实现热部署/" class="leancloud_visitors" data-flag-title="SpringBoot项目在IDEA中实现热部署">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,7 +401,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,233 字
+                  232 字
                 </span>
               
 
@@ -419,7 +417,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5 分钟
+                  1 分钟
                 </span>
               
             </div>
@@ -440,39 +438,32 @@
       
 
       
-        <h2 id="1-配置-adb-命令"><a href="#1-配置-adb-命令" class="headerlink" title="1. 配置 adb 命令"></a>1. 配置 adb 命令</h2><p>一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入<code>adb devices</code> 后，缺提示 <code>bash: adb: command not found</code> 。好吧，让我来先配置一下环境变量（<code>Mac OS 10.12.6</code> <code>jdk1.8.0_121</code>）。</p>
-<blockquote>
-<p>1.Mac下打开终端：Launchpad -&gt; 其他 -&gt; 终端<br>2.输入：<code>touch .bash_profile</code><br>3.打开：<code>open -e .bash_profile</code><br>4.保存：<code>source .bash_profile</code></p>
+        <blockquote>
+<p>版本： <code>Intellij IDEA 2017.3</code></p>
 </blockquote>
-<p>其中进行第3步，打开的 <strong>.bash_profile</strong> 文件，文件的路径一定要改成你自己电脑中的具体路径。</p>
-<p>我电脑中配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH:/Users/xiaomi/Library/Android/sdk/tools/:/Users/xiaomi/Library/Android/sdk/platform-tools/</span><br><span class="line"></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM into a shell session *as a function*</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意：</strong> <em>PATH</em> 变量中的 Android/sdk/tools 路径。</p>
-<p>执行 <code>source .bash_profile</code> 后，<br>输入 <code>adb</code> 命令，可见控制台输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Android Debug Bridge version 1.0.39</span><br><span class="line">Revision 5943271ace17-android</span><br><span class="line"></span><br><span class="line">global options:</span><br><span class="line"> -a         listen on all network interfaces, not just localhost</span><br><span class="line"> -d         use USB device (error if multiple devices connected)</span><br><span class="line"> -e         use TCP/IP device (error if multiple TCP/IP devices available)</span><br><span class="line"> -s SERIAL</span><br><span class="line">     use device with given serial number (overrides $ANDROID_SERIAL)</span><br><span class="line"> -p PRODUCT</span><br><span class="line">     name or path (&apos;angler&apos;/&apos;out/target/product/angler&apos;);</span><br><span class="line">     default $ANDROID_PRODUCT_OUT</span><br><span class="line"> -H         name of adb server host [default=localhost]</span><br><span class="line"> -P         port of adb server [default=5037]</span><br><span class="line"> -L SOCKET  listen on given socket for adb server [default=tcp:localhost:5037]</span><br><span class="line"></span><br><span class="line">general commands:</span><br><span class="line"> devices [-l]             list connected devices (-l for long output)</span><br><span class="line"> help                     show this help message</span><br><span class="line"> version                  show version num</span><br><span class="line">......</span><br></pre></td></tr></table></figure></p>
-<p>OK~ 你该明白了吧。</p>
-<h2 id="2-AS-中手动实现无线真机调试"><a href="#2-AS-中手动实现无线真机调试" class="headerlink" title="2. AS 中手动实现无线真机调试"></a>2. AS 中手动实现无线真机调试</h2><p>无线真机调试很简单，无需插件，无需 Root，使用插件反而会将这个流程复杂化。先放上 <em>纯流程版</em> ，方便阅读之后快速查阅，</p>
-<h3 id="纯流程版"><a href="#纯流程版" class="headerlink" title="纯流程版"></a>纯流程版</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 将手机与电脑连接在同一局域网内</span><br><span class="line">2. 手机用线连接电脑，控制台输入命令adb devices, 有设备编号为连接成功</span><br><span class="line">3. 拔手机线，控制台输入命令 adb tcpip 5555，将TCP模式在 5555 端口启动，无任何输出为成功启动</span><br><span class="line">4. 控制台输入命令 adb connect 192.168.56.101:5555</span><br><span class="line">其中：192.168.56.101 为手机在局域网的 ip 地址，输出连接成功</span><br><span class="line">此时无线连接已经成功，正常调试即可</span><br></pre></td></tr></table></figure>
-<h3 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h3><p>打开 <strong>命令行终端</strong> ，键入<code>adb devices</code>，这个命令会输出所有连接到这台电脑上的设备，每个设备有一个独一无二的序列号。<br>见图 : </p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p>
-<p><strong>进行无线连接</strong></p>
-<p>输入命令<code>adb tcpip 5555</code>，这个命令的作用是打开手机的 TCP 模式，并且将其绑定到 5555 接口。其中，5555 端口是一个习惯使用的端口，就像 MySql 一般使用 3306 端口一样，也可以随意指定，只要不产生端口冲突即可。</p>
-<p>这条命令执行后没有任何输出，但是手机会出现一次，类似于与电脑断线并且重新插线的反应，代表执行成功。<br>打开成功之后，就可以拔掉手机数据线了。</p>
-<p>接下来执行连接命令，但是首先我们需要进入手机 WIFI 网络详情，找到此时手机 WIFI 中的 IP 地址。接下来就可以执行连接命令了，连接命令为 adb connect 手机 IP 地址: TCP 绑定的端口。</p>
-<p>例如，我手机的 IP 地址是 192.168.31.93，之前 TCP 模式绑定的端口为 5555，此时我需要执行的连接命令为 <code>adb connect 192.168.31.93:5555</code><br>此时控制台输出 connected to 192.168.31.93:5555，表示无线连接成功。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-82345073af59d522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="无线连接.png"></p>
-<p>TCP 模式一旦开启，只在手机重启时才会关闭，关闭后如果还需使用需要重新开启。断网重连，换 WIFI，不会关闭，只要保持手机电脑在统一 WIFI 下就不需要重新开启。</p>
-<p>不过如果手机一旦断网，或者切换 WIFI，与电脑的无线连接会立即断开，如果需要重新连接，重新执行一次 <code>adb connect</code> 命令就好。</p>
-<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>在项目中，直接点击 <strong>run</strong>，选择连接的设备即可。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-062796b8693c088d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="连接手机调试"></p>
-<p>然后，就可以开心的调试了。</p>
-<h2 id="3-补充：连接多台设备"><a href="#3-补充：连接多台设备" class="headerlink" title="3. 补充：连接多台设备"></a>3. 补充：连接多台设备</h2><p>使用<code>adb devices</code> 命令，可以得到一个已连接设备的序列号表，一次连接多台设备跟连接一台设备流程类似，通过 『<strong>序列号指定设备</strong> 』即可。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-e077378d8ef5293b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="模拟器和手机同时连接.png"></p>
-<p>例如，需要进行 TCP 模式开启，<code>adb -s f87c75bb tcpip 5555</code>，但是与电脑建立连接的 adb connect 命令不需要加序列号，因为 IP 地址本来就相当于是序列号了。</p>
-<p>然后，查看手机连接的IPv4地址，比如我的是：192.168.0.200<br>执行 <code>adb connect 192.168.0.200:5555</code></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1552105-c5e2b5412dd95c07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p>
-<p>接下来，请开始你的调试吧。</p>
-<blockquote>
-<p>个人整理，难免有错误纰漏，欢迎指正。</p>
+<h2 id="1-引入插件"><a href="#1-引入插件" class="headerlink" title="1. 引入插件"></a>1. 引入插件</h2><p>引入热加载的插件，springboot 1.3开始就有的…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>project 中添加<code>spring-boot-maven-plugin</code>,主要在eclipse中起作用，idea不需要加此配置。<br>SpringBoot 项目的话，应该是有此配置，加 <configuration> 里面的内容即可。</configuration></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">       &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;fork&gt;true&lt;/fork&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="2-IDEA（2017-3）-配置"><a href="#2-IDEA（2017-3）-配置" class="headerlink" title="2. IDEA（2017.3）  配置"></a>2. IDEA（2017.3）  配置</h2><ol>
+<li>点击： <code>File-&gt; Settings -&gt; Build ,Execution,Deployment -&gt; Compiler</code><blockquote>
+<p>Mac版IDEA，使用快捷键 <code>command + ,</code> 打开 <code>Preferences</code><br>定位到<code>-&gt; Build ,Execution,Deployment -&gt; Compiler</code></p>
 </blockquote>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/1552105-1d6baae9f115170b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Compiler.png"></p>
+<p>选中 <code>Build project automatically</code>，然后点击  <code>OK</code> 保存退出。</p>
+<ol>
+<li>使用组合键：<code>Shift+ALT+Ctrl+/</code> ，选择<code>Registry</code>，回车<blockquote>
+<p>Mac版  <code>command + option +shift +/</code> </p>
+</blockquote>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/1552105-3598a1828697e483.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740" alt="Registry-01.png"><br><img src="https://upload-images.jianshu.io/upload_images/1552105-ca65db85c2ae5a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Registry-02.png"></p>
+<p>搜索 <code>complier.automake.allow.when.app.running</code> ，找到后，勾选 ☑️ 退出即可。</p>
+<ol>
+<li>禁用浏览器缓存<br>按F12（更多工具—-&gt;开发者工具），找到network，勾选Disable Cache。</li>
+</ol>
 
       
     </div>
@@ -501,7 +492,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+            <a href="/tags/Springboot/" rel="tag"><i class="fa fa-tag"></i> Springboot</a>
           
         </div>
       
@@ -514,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/03/2017/Hexo-相关问题收集/" rel="next" title="Hexo相关问题收集">
-                <i class="fa fa-chevron-left"></i> Hexo相关问题收集
+              <a href="/2018/01/31/2018/Git常见安装配置问题点/" rel="next" title="Git常见安装问题">
+                <i class="fa fa-chevron-left"></i> Git常见安装问题
               </a>
             
           </div>
@@ -523,10 +514,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/20/2017/Mac下使用gradlew命令注意事项/" rel="prev" title="Mac下使用gradlew命令注意事项">
-                Mac下使用gradlew命令注意事项 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -690,7 +677,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-配置-adb-命令"><span class="nav-number">1.</span> <span class="nav-text">1. 配置 adb 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-AS-中手动实现无线真机调试"><span class="nav-number">2.</span> <span class="nav-text">2. AS 中手动实现无线真机调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#纯流程版"><span class="nav-number">2.1.</span> <span class="nav-text">纯流程版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细版"><span class="nav-number">2.2.</span> <span class="nav-text">详细版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调试"><span class="nav-number">2.3.</span> <span class="nav-text">调试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-补充：连接多台设备"><span class="nav-number">3.</span> <span class="nav-text">3. 补充：连接多台设备</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引入插件"><span class="nav-number">1.</span> <span class="nav-text">1. 引入插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-IDEA（2017-3）-配置"><span class="nav-number">2.</span> <span class="nav-text">2. IDEA（2017.3）  配置</span></a></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://memmrf.top/"/>
-  <updated>2018-01-31T13:32:22.000Z</updated>
+  <updated>2018-07-30T11:00:12.000Z</updated>
   <id>http://memmrf.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot项目在IDEA中实现热部署</title>
+    <link href="http://memmrf.top/2018/07/29/2018/SpringBoot%E9%A1%B9%E7%9B%AE%E5%9C%A8IDEA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
+    <id>http://memmrf.top/2018/07/29/2018/SpringBoot项目在IDEA中实现热部署/</id>
+    <published>2018-07-29T13:30:12.000Z</published>
+    <updated>2018-07-30T11:00:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>版本： <code>Intellij IDEA 2017.3</code></p></blockquote><h2 id="1-引入插件"><a href="#1-引入插件" class="headerlink" title="1. 引入插件"></a>1. 引入插件</h2><p>引入热加载的插件，springboot 1.3开始就有的…</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p>project 中添加<code>spring-boot-maven-plugin</code>,主要在eclipse中起作用，idea不需要加此配置。<br>SpringBoot 项目的话，应该是有此配置，加 <configuration> 里面的内容即可。</configuration></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">       &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;fork&gt;true&lt;/fork&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure><h2 id="2-IDEA（2017-3）-配置"><a href="#2-IDEA（2017-3）-配置" class="headerlink" title="2. IDEA（2017.3）  配置"></a>2. IDEA（2017.3）  配置</h2><ol><li>点击： <code>File-&gt; Settings -&gt; Build ,Execution,Deployment -&gt; Compiler</code><blockquote><p>Mac版IDEA，使用快捷键 <code>command + ,</code> 打开 <code>Preferences</code><br>定位到<code>-&gt; Build ,Execution,Deployment -&gt; Compiler</code></p></blockquote></li></ol><p><img src="https://upload-images.jianshu.io/upload_images/1552105-1d6baae9f115170b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Compiler.png"></p><p>选中 <code>Build project automatically</code>，然后点击  <code>OK</code> 保存退出。</p><ol><li>使用组合键：<code>Shift+ALT+Ctrl+/</code> ，选择<code>Registry</code>，回车<blockquote><p>Mac版  <code>command + option +shift +/</code> </p></blockquote></li></ol><p><img src="https://upload-images.jianshu.io/upload_images/1552105-3598a1828697e483.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740" alt="Registry-01.png"><br><img src="https://upload-images.jianshu.io/upload_images/1552105-ca65db85c2ae5a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Registry-02.png"></p><p>搜索 <code>complier.automake.allow.when.app.running</code> ，找到后，勾选 ☑️ 退出即可。</p><ol><li>禁用浏览器缓存<br>按F12（更多工具—-&gt;开发者工具），找到network，勾选Disable Cache。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;版本： &lt;code&gt;Intellij IDEA 2017.3&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-引入插件&quot;&gt;&lt;a href=&quot;#1-引入插件&quot; class=&quot;headerlink&quot; title=&quot;1. 引入插件
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Springboot" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Springboot/"/>
+    
+    
+      <category term="Springboot" scheme="http://memmrf.top/tags/Springboot/"/>
+    
+  </entry>
   
   <entry>
     <title>Git常见安装问题</title>
@@ -106,7 +136,7 @@
     <link href="http://memmrf.top/2018/01/01/2018/Hello-2018/"/>
     <id>http://memmrf.top/2018/01/01/2018/Hello-2018/</id>
     <published>2018-01-01T00:00:00.000Z</published>
-    <updated>2018-07-17T11:28:05.016Z</updated>
+    <updated>2018-07-30T05:32:58.299Z</updated>
     
     <content type="html"><![CDATA[<div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="https://ooo.0o0.ooo/2017/12/31/5a4902c63fb80.jpg" alt="hello2018.jpg"></div></div><div class="group-picture-row"></div></div></div>]]></content>
     
@@ -186,34 +216,6 @@
   </entry>
   
   <entry>
-    <title>上传library到自己创建的maven仓库</title>
-    <link href="http://memmrf.top/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/"/>
-    <id>http://memmrf.top/2017/11/22/2017/上传library到自己创建的maven仓库/</id>
-    <published>2017-11-22T12:00:00.000Z</published>
-    <updated>2017-11-22T14:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>根目录build添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">jcenter()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">classpath &apos;com.android.tools.build:gradle:2.2.2&apos;</span><br><span class="line"></span><br><span class="line">classpath &apos;com.novoda:bintray-release:0.3.4&apos;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>需要上传Library的build添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &apos;com.novoda.bintray-release&apos;</span><br><span class="line"></span><br><span class="line">publish &#123;</span><br><span class="line"></span><br><span class="line">userOrg = &apos;&apos;      //bintray注册的用户名</span><br><span class="line"></span><br><span class="line">groupId = &apos;&apos;        //compile引用时的第1部分groupId</span><br><span class="line"></span><br><span class="line">artifactId = &apos;&apos;    //compile引用时的第2部分项目名</span><br><span class="line"></span><br><span class="line">publishVersion = &apos;1.0.0&apos;    //compile引用时的第3部分版本号</span><br><span class="line"></span><br><span class="line">desc = &apos;&apos;</span><br><span class="line"></span><br><span class="line">website = &apos;&apos;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最后打开Termainal执行命令</p><p>发布到bintary 命令</p><p><code>./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=自己KEY -PdryRun=false</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;根目录build添加&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp
-      
-    
-    </summary>
-    
-      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
-    
-      <category term="Library" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Library/"/>
-    
-    
-      <category term="Library" scheme="http://memmrf.top/tags/Library/"/>
-    
-  </entry>
-  
-  <entry>
     <title>mozjpeg pre-build test failed</title>
     <link href="http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/"/>
     <id>http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/</id>
@@ -241,6 +243,34 @@
     
     
       <category term="日志" scheme="http://memmrf.top/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上传library到自己创建的maven仓库</title>
+    <link href="http://memmrf.top/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/"/>
+    <id>http://memmrf.top/2017/11/22/2017/上传library到自己创建的maven仓库/</id>
+    <published>2017-11-22T12:00:00.000Z</published>
+    <updated>2017-11-22T14:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>根目录build添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">jcenter()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">classpath &apos;com.android.tools.build:gradle:2.2.2&apos;</span><br><span class="line"></span><br><span class="line">classpath &apos;com.novoda:bintray-release:0.3.4&apos;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>需要上传Library的build添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &apos;com.novoda.bintray-release&apos;</span><br><span class="line"></span><br><span class="line">publish &#123;</span><br><span class="line"></span><br><span class="line">userOrg = &apos;&apos;      //bintray注册的用户名</span><br><span class="line"></span><br><span class="line">groupId = &apos;&apos;        //compile引用时的第1部分groupId</span><br><span class="line"></span><br><span class="line">artifactId = &apos;&apos;    //compile引用时的第2部分项目名</span><br><span class="line"></span><br><span class="line">publishVersion = &apos;1.0.0&apos;    //compile引用时的第3部分版本号</span><br><span class="line"></span><br><span class="line">desc = &apos;&apos;</span><br><span class="line"></span><br><span class="line">website = &apos;&apos;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最后打开Termainal执行命令</p><p>发布到bintary 命令</p><p><code>./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=自己KEY -PdryRun=false</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;根目录build添加&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/sp
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Library" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Library/"/>
+    
+    
+      <category term="Library" scheme="http://memmrf.top/tags/Library/"/>
     
   </entry>
   
@@ -421,35 +451,6 @@
   </entry>
   
   <entry>
-    <title>安装 Node.js</title>
-    <link href="http://memmrf.top/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/"/>
-    <id>http://memmrf.top/2017/09/29/2017/安装Node.js/</id>
-    <published>2017-09-29T12:00:00.000Z</published>
-    <updated>2017-09-29T14:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>~『 NO. 1 』</strong></p><blockquote><p>安装 <code>Node.js</code> 方式多种多样，最简单的方式是在 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js 官网</a> 下载可执行程序直接安装即可。</p></blockquote><p>对于 Mac，可以使用 <a href="http://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 进行安装：<br><code>brew install node</code></p><blockquote><p>更多安装方式可参考 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 官方信息</a></p></blockquote><p>安装完成后，可以使用以下命令检测是否安装成功：</p><blockquote><p>$ node -v<br>v6.11.3<br>$ npm -v<br>3.10.10 </p></blockquote><p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p><p><strong>~『 NO. 2 』</strong></p><blockquote><p>npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code>更新一下npm的版本，使用前请确认版本是否正确。</p></blockquote><p><strong>~『 NO. 3 』</strong></p><blockquote><p>国内开发者可以考虑使用淘宝的 npm 镜像 —— <a href="https://npm.taobao.org/" target="_blank" rel="noopener">cnpm</a> 安装 weex-toolkit</p><p>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;~『 NO. 1 』&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;安装 &lt;code&gt;Node.js&lt;/code&gt; 方式多种多样，最简单的方式是在 &lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; 
-      
-    
-    </summary>
-    
-      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
-    
-      <category term="Node.js" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Node-js/"/>
-    
-    
-      <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
-    
-  </entry>
-  
-  <entry>
     <title>weex开发环境搭建</title>
     <link href="http://memmrf.top/2017/09/29/2017/WEEX-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     <id>http://memmrf.top/2017/09/29/2017/WEEX-开发环境搭建/</id>
@@ -475,6 +476,35 @@
     
     
       <category term="weex" scheme="http://memmrf.top/tags/weex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装 Node.js</title>
+    <link href="http://memmrf.top/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/"/>
+    <id>http://memmrf.top/2017/09/29/2017/安装Node.js/</id>
+    <published>2017-09-29T12:00:00.000Z</published>
+    <updated>2017-09-29T14:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>~『 NO. 1 』</strong></p><blockquote><p>安装 <code>Node.js</code> 方式多种多样，最简单的方式是在 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js 官网</a> 下载可执行程序直接安装即可。</p></blockquote><p>对于 Mac，可以使用 <a href="http://brew.sh/" target="_blank" rel="noopener">Homebrew</a> 进行安装：<br><code>brew install node</code></p><blockquote><p>更多安装方式可参考 <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">Node.js 官方信息</a></p></blockquote><p>安装完成后，可以使用以下命令检测是否安装成功：</p><blockquote><p>$ node -v<br>v6.11.3<br>$ npm -v<br>3.10.10 </p></blockquote><p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p><p><strong>~『 NO. 2 』</strong></p><blockquote><p>npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code>更新一下npm的版本，使用前请确认版本是否正确。</p></blockquote><p><strong>~『 NO. 3 』</strong></p><blockquote><p>国内开发者可以考虑使用淘宝的 npm 镜像 —— <a href="https://npm.taobao.org/" target="_blank" rel="noopener">cnpm</a> 安装 weex-toolkit</p><p>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;~『 NO. 1 』&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装 &lt;code&gt;Node.js&lt;/code&gt; 方式多种多样，最简单的方式是在 &lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; 
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Node.js" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
     
   </entry>
   
