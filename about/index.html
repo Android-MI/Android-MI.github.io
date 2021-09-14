@@ -10,7 +10,7 @@
   
   <title>
     
-      About | 小米`s Blog
+      关于我 | 小米`s Blog
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -163,38 +163,133 @@
   </div>
 </header>
 
-    <div id="about-banner" style="background-image: url()"></div>
-<div class="author">
-  <div class="head">
-    <img src="/avatar.gif" />
+    <div id="article-banner">
+  <h2>关于我</h2>
+  <p class="post-date">2017-09-18</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
   </div>
-  <h3>小米`s</h3>
-  
-    <p class="description">The end is always near.</p>
-  
-  <section class="share-icons">
-    
-    
-    
-    
-    
-    
-  </section>
 </div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>我就是我，平凡的自我。</p>
+<p><strong>小米`s</strong></p>
+<h1 id="1"><a href="#1" class="headerlink" title="-1-"></a>-1-</h1><p>平凡即普通。</p>
+<blockquote>
+<p>每个人心中，都有属于自己的世界。有现实、有理想，有成就、有不甘。酸甜苦辣，五味杂陈。<br>有了对生活的希望，人就会产生激情，并可以义无反顾地为之而付出代价。也往往只有在这样的过程中，人才能真正体会到人生的意义。<br>什么是人生？人生就是永无休止的奋斗！只有决定了目标，并在奋斗中感到自己的努力没有虚掷，这样的生活才是充实的，精神也会永远年轻。</p>
+</blockquote>
+<p>小时候我们奇思异想，特立独行，潜意识都认为自己与众不同，将来必成就一番大事业。年轻时我们满怀热血，纵千山万水，趟崎岖坎坷，跌跌撞撞一路走来，收获与失落伴随，少了当初的那一份激情，没了当初的那一份信念。这世上毕竟常人居多，异于常人者，要么是伟人，要么是异端，都在少数。
+﻿﻿</p>
+<h1 id="2"><a href="#2" class="headerlink" title="-2-"></a>-2-</h1><p>平凡、但不平庸。</p>
+<blockquote>
+<p>做个平凡的人很好，即便襟抱不展，即使怅然若失，也远胜于先福后贫，更好过先显后促。<br>竹杖芒鞋轻胜马，一蓑烟雨任平生。得生命之野趣，品生活之常态。平凡处自然高贵，寂静里淡然从容。甘于平凡，自有不平凡的无穷乐趣。﻿﻿</p>
+</blockquote>
+<p>知足常乐，平凡的人生并不是不好。但是碌碌无为，平淡无奇的人生就会索然无味，变得庸俗，不堪。</p>
+<p>人，可以平凡此生，但不该平庸一生。纵达不到声名显赫，扬名立万，也该为自己的信念而努力，为自己的理想而奋斗，不和他人论高低，不与他人争长短，只要自己开心便好。</p>
+<p>以前，脑子里闪过无数的创意和想法，都是自己给自己找借口，没有一样真正动手去实现，白白的浪费了时间和机会。人生，最宝贵的就是时间和机会，勿忘初心，抓住机遇去实现不一样的人生。</p>
+<h1 id="3"><a href="#3" class="headerlink" title="-3-"></a>-3-</h1><blockquote>
+<p>在路上，在远方。</p>
+</blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=347230&auto=0&height=66"></iframe>
+
+
+
+</section>
+    <!-- Tags START -->
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1"><span class="toc-nav-text">-1-</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2"><span class="toc-nav-text">-2-</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3"><span class="toc-nav-text">-3-</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
 
 <script>
   (function () {
-    $('.header').removeClass('fixed-header')
-    var windowH = $(window).height();
-    var author = $('.author')
-    var bodyH = author.offset().top + author[0].offsetHeight + 71;
-    if (bodyH < windowH) {
-      author.css({
-        'margin-bottom': windowH - bodyH
+    var url = 'http://memmrf.top/about/index.html';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
       })
+    } else {
+      $('#article-banner').geopattern(url)
     }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
   })();
 </script>
+
+
+
+
+
+
 
     <div class="scroll-top">
   <span class="arrow-icon"></span>

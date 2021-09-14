@@ -17,35 +17,6 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Git SSH 配置（码云+Github）</title>
-    <link href="http://memmrf.top/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/"/>
-    <id>http://memmrf.top/2018/01/31/2018/Git-SSH-配置（码云+Github）/</id>
-    <published>2018-01-31T05:30:12.000Z</published>
-    <updated>2018-01-31T05:32:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="码云配置"><a href="#码云配置" class="headerlink" title="码云配置"></a>码云配置</h3><p>1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入</p><blockquote><p><code>ssh-keygen -t rsa -C &quot;xxxx@xx.com&quot;</code></p></blockquote><p>2.一直按回车(Enter),不要输入任何密码之类，生成 ssh key pair</p><p>3.<code>ssh-add ~/.ssh/id_rsa</code><br>如果出现 <code>Could not open a connection to your authentiacation agent</code> 执行 <code>eval `ssh-agent` </code><br>在执行 <code>ssh-add ~/.ssh/rsa </code>成功 <code>ssh-add l </code>就有新加的rsa了</p><p>4.<code>cat ~/.ssh/id_rsa.pub </code>(查看)</p><p>5.将公钥复制出来</p><p>6.进入码云-个人设置-SSH公钥配置，把复制的东西加进去提交 。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;码云配置&quot;&gt;&lt;a href=&quot;#码云配置&quot; class=&quot;headerlink&quot; title=&quot;码云配置&quot;&gt;&lt;/a&gt;码云配置&lt;/h3&gt;&lt;p&gt;1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
-    
-      <category term="Git" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Git/"/>
-    
-    
-      <category term="Git" scheme="http://memmrf.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Git常见安装问题</title>
     <link href="http://memmrf.top/2018/01/31/2018/Git%E5%B8%B8%E8%A7%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E7%82%B9/"/>
     <id>http://memmrf.top/2018/01/31/2018/Git常见安装配置问题点/</id>
@@ -61,6 +32,35 @@
         &lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h3&gt;&lt;p&gt;配置用户名(提交时候会引用)&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code&gt;git config --global user.name
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Git" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Git/"/>
+    
+    
+      <category term="Git" scheme="http://memmrf.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git SSH 配置（码云+Github）</title>
+    <link href="http://memmrf.top/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/"/>
+    <id>http://memmrf.top/2018/01/31/2018/Git-SSH-配置（码云+Github）/</id>
+    <published>2018-01-31T05:30:12.000Z</published>
+    <updated>2018-01-31T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="码云配置"><a href="#码云配置" class="headerlink" title="码云配置"></a>码云配置</h3><p>1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入</p><blockquote><p><code>ssh-keygen -t rsa -C &quot;xxxx@xx.com&quot;</code></p></blockquote><p>2.一直按回车(Enter),不要输入任何密码之类，生成 ssh key pair</p><p>3.<code>ssh-add ~/.ssh/id_rsa</code><br>如果出现 <code>Could not open a connection to your authentiacation agent</code> 执行 <code>eval `ssh-agent` </code><br>在执行 <code>ssh-add ~/.ssh/rsa </code>成功 <code>ssh-add l </code>就有新加的rsa了</p><p>4.<code>cat ~/.ssh/id_rsa.pub </code>(查看)</p><p>5.将公钥复制出来</p><p>6.进入码云-个人设置-SSH公钥配置，把复制的东西加进去提交 。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;码云配置&quot;&gt;&lt;a href=&quot;#码云配置&quot; class=&quot;headerlink&quot; title=&quot;码云配置&quot;&gt;&lt;/a&gt;码云配置&lt;/h3&gt;&lt;p&gt;1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
       
     
     </summary>
@@ -217,6 +217,34 @@
   </entry>
   
   <entry>
+    <title>上传library到自己创建的maven仓库</title>
+    <link href="http://memmrf.top/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/"/>
+    <id>http://memmrf.top/2017/11/22/2017/上传library到自己创建的maven仓库/</id>
+    <published>2017-11-22T04:00:00.000Z</published>
+    <updated>2017-11-22T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>根目录build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">jcenter()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.android.tools.build:gradle:2.2.2&#x27;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.novoda:bintray-release:0.3.4&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>需要上传Library的build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &#x27;com.novoda.bintray-release&#x27;</span><br><span class="line"></span><br><span class="line">publish &#123;</span><br><span class="line"></span><br><span class="line">userOrg = &#x27;&#x27;      //bintray注册的用户名</span><br><span class="line"></span><br><span class="line">groupId = &#x27;&#x27;        //compile引用时的第1部分groupId</span><br><span class="line"></span><br><span class="line">artifactId = &#x27;&#x27;    //compile引用时的第2部分项目名</span><br><span class="line"></span><br><span class="line">publishVersion = &#x27;1.0.0&#x27;    //compile引用时的第3部分版本号</span><br><span class="line"></span><br><span class="line">desc = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">website = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>最后打开Termainal执行命令</p><p>发布到bintary 命令</p><p><code> ./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=自己KEY -PdryRun=false</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;根目录build添加&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Library" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Library/"/>
+    
+    
+      <category term="Library" scheme="http://memmrf.top/tags/Library/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mozjpeg pre-build test failed</title>
     <link href="http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/"/>
     <id>http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/</id>
@@ -244,34 +272,6 @@
     
     
       <category term="日志" scheme="http://memmrf.top/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>上传library到自己创建的maven仓库</title>
-    <link href="http://memmrf.top/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/"/>
-    <id>http://memmrf.top/2017/11/22/2017/上传library到自己创建的maven仓库/</id>
-    <published>2017-11-22T04:00:00.000Z</published>
-    <updated>2017-11-22T06:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>根目录build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">jcenter()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.android.tools.build:gradle:2.2.2&#x27;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.novoda:bintray-release:0.3.4&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>需要上传Library的build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &#x27;com.novoda.bintray-release&#x27;</span><br><span class="line"></span><br><span class="line">publish &#123;</span><br><span class="line"></span><br><span class="line">userOrg = &#x27;&#x27;      //bintray注册的用户名</span><br><span class="line"></span><br><span class="line">groupId = &#x27;&#x27;        //compile引用时的第1部分groupId</span><br><span class="line"></span><br><span class="line">artifactId = &#x27;&#x27;    //compile引用时的第2部分项目名</span><br><span class="line"></span><br><span class="line">publishVersion = &#x27;1.0.0&#x27;    //compile引用时的第3部分版本号</span><br><span class="line"></span><br><span class="line">desc = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">website = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>最后打开Termainal执行命令</p><p>发布到bintary 命令</p><p><code> ./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=自己KEY -PdryRun=false</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;根目录build添加&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2
-      
-    
-    </summary>
-    
-      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
-    
-      <category term="Library" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Library/"/>
-    
-    
-      <category term="Library" scheme="http://memmrf.top/tags/Library/"/>
     
   </entry>
   
