@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Mac下Tomcat安装和配置 | 小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Mac下Tomcat安装和配置</h2>
+  <p class="post-date">2017-11-02</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>闲话不说，直接开工：</p>
+<blockquote>
+<p>本人机器配置，更新于2017-11-2，以供各位参考<br><code>Java : 1.8.0_121</code><br><code>Tomcat : 8.5.23</code></p>
+</blockquote>
+<blockquote>
+<p>下载地址：<br><a target="_blank" rel="noopener" href="https://www.java.com/zh_CN/download/mac_download.jsp">Java </a><br><a target="_blank" rel="noopener" href="http://tomcat.apache.org/download-80.cgi">Tomcat</a></p>
+</blockquote>
+<p>Tomcat不区分Linux版和Mac版,但Windows请选择对应的32位或者64位系统 zip 包即可。</p>
+<h2 id="1-下载-Tomact"><a href="#1-下载-Tomact" class="headerlink" title="1. 下载 Tomact"></a>1. 下载 Tomact</h2><p>真正的绿色软件，解压，放在指定位置即可。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-bb4160d3fcab25df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Tomcat 8.5.23.png"></p>
+<h2 id="2-解压文件"><a href="#2-解压文件" class="headerlink" title="2. 解压文件"></a>2. 解压文件</h2><p>我是放在电脑的 「资源库」文件夹中。<br>具体位置在：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-289fefbb1b80d1d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压文件到指定目录.png"></p>
+<h2 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h2><ul>
+<li>打开控制台，编辑用户环境文件 <code>.bash_profile</code><blockquote>
+<p><code>vi ~/.bash_profile</code></p>
+</blockquote>
+</li>
+</ul>
+<p>键入 <code>i</code>执行<code>插入</code>操作，</p>
+<ul>
+<li><p>在打开的文件中，添加 tomcat 路径</p>
+<blockquote>
+<p><code>export TOMCAT_PATH=/Users/xiaomi/Library/Tomcat/apache-tomcat-8.5.23/bin</code></p>
+</blockquote>
+</li>
+<li><p>在原来 <code>PATH</code> 后追加 Tomcat 路径，以我本机配置为例（已省略一些其他信息）：</p>
+</li>
+</ul>
+<blockquote>
+<p><code> export PATH=$JAVA_HOME/bin:$&#123;TOMCAT_PATH&#125;</code></p>
+</blockquote>
+<p><strong>提示：</strong>  在原 <code>PATH</code> 后 使用 <code>:</code> 连接  <code>$&#123;TOMCAT_PATH&#125;</code> 即可。</p>
+<ul>
+<li>**保存退出 <code>:wq</code>**， 执行命令使刚才编辑的<code>.bash_profile</code>文件生效。<blockquote>
+<p><code>source ~/.bash_profile</code></p>
+</blockquote>
+</li>
+</ul>
+<p>配置文件权限：</p>
+<blockquote>
+<p><code>cd /Users/(自己的用户目录)/Tomcat/apache-tomcat-8.5.23/bin</code><br><code>sudo chmod +x *.sh</code></p>
+</blockquote>
+<h2 id="4-启动-Tomcat，验证配置是否正确"><a href="#4-启动-Tomcat，验证配置是否正确" class="headerlink" title="4.启动 Tomcat，验证配置是否正确"></a>4.启动 Tomcat，验证配置是否正确</h2><blockquote>
+<p><code>startup.sh </code> // 启动 tomcat<br>// 执行后即可访问 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080/</a><br><code>shutdown.sh</code>  // 关闭 tomcat</p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-a885363f62cd4ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="tomcat 启动.png"></p>
+<p>也许你还想点『 Server Status 』按钮看看服务器状态，但你马上发现不行，你没有设置管理员的用户名/密码，它不让你看。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-288ed84048622f7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看服务器状态.png"></p>
+<p>对于这种情况，我们看到<br>tomcat 7.0需要将manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script 这些全写上，故编辑</p>
+<blockquote>
+<p><code>../Tomcat/apache-tomcat-8.5.23/conf/tomcat-users.xml</code></p>
+</blockquote>
+<p>在文件里加入下面👇配置（用户名和密码自定义设置，我写的都是 admin）,</p>
+<blockquote>
+<p><code>&lt;role rolename=&quot;manager-gui&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-script&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-jmx&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-status&quot;/&gt;</code><br><code>&lt;role rolename=&quot;admin-gui&quot;/&gt;</code><br><code>&lt;role rolename=&quot;admin-script&quot;/&gt;</code><br><code>&lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script&quot;/&gt;  </code></p>
+</blockquote>
+<p>重启 tomcat 后，这时候点击『 Server Status 』入下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-34950d1440a00b36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Server Status.png"></p>
+<blockquote>
+<p>以上内容，整理自其他博文以便自己记录和查看，也希望能帮到他人。</p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2017/10/30/2017/Android%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5/">
+        <span class="nav-arrow">← </span>
+        
+          Android使用指定浏览器打开网页
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2017/11/09/2017/Mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E5%88%A0%E9%99%A4MySql/">
+        
+          Mac下安装、配置、删除 mysql
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E4%B8%8B%E8%BD%BD-Tomact"><span class="toc-nav-text">1. 下载 Tomact</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6"><span class="toc-nav-text">2. 解压文件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-nav-text">3. 配置环境变量</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#4-%E5%90%AF%E5%8A%A8-Tomcat%EF%BC%8C%E9%AA%8C%E8%AF%81%E9%85%8D%E7%BD%AE%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE"><span class="toc-nav-text">4.启动 Tomcat，验证配置是否正确</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://memmrf.top/2017/11/02/2017/Mac下Tomcat安装和配置/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

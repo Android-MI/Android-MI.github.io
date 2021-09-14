@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      weex开发环境搭建 | 小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>weex开发环境搭建</h2>
+  <p class="post-date">2017-09-29</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><strong>~『 NO. 1 安装依赖 』</strong></p>
+<blockquote>
+<p>Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要 Node.js 和 <a target="_blank" rel="noopener" href="https://github.com/weexteam/weex-toolkit">Weex CLi</a>。</p>
+</blockquote>
+<blockquote>
+<p><code>Node.js</code> 安装方式，请移步 <a target="_blank" rel="noopener" href="http://www.jianshu.com/p/3d7c3f5ecf1f">Node.js 安装</a></p>
+</blockquote>
+<p>安装完成后，可以使用以下命令检测是否安装成功：</p>
+<blockquote>
+<p>$ <code>node -v</code><br>v6.11.3<br>$ <code>npm -v</code><br>3.10.10 </p>
+</blockquote>
+<p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p>
+<p>注意: 在 <code>weex-toolkit</code>1.0.8 版本后添加了npm5规范的 <code>npm-shrinkwrap.json</code>用于锁定包依赖，故npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code><br>更新一下npm的版本，使用前请确认版本是否正确。</p>
+<blockquote>
+<p>$<code>npm install -g weex-toolkit</code><br>$ <code>weex -v </code>//查看当前weex版本</p>
+</blockquote>
+<p>weex-toolkit也支持直接升级子依赖，如：</p>
+<blockquote>
+<p><code>weex update weex-devtool@latest </code>//@后标注版本后，latest表示最新</p>
+</blockquote>
+<p>提示：<br>如果提示权限错误（<em>permission error</em>），使用 <code>sudo</code>关键字进行安装</p>
+<blockquote>
+<p>$ <code>sudo npm install -g weex-toolkit</code></p>
+</blockquote>
+<p>安装结束后你可以直接使用 <code>weex</code> 命令验证是否安装成功，它会显示  <code>weex</code>命令行工具各参数：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-b1d127f85238eed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/840" alt="weex 命令行工具各参数.png"></p>
+<p><strong>~『 NO. 2 初始化 』</strong></p>
+<p>然后初始化 Weex 项目：</p>
+<blockquote>
+<p>$ <code>weex create awesome-project</code></p>
+</blockquote>
+<p>执行完命令后，在 <code>awesome-project</code> 目录中就创建了一个使用 Weex 和 Vue 的模板项目</p>
+<p><strong>~『 NO. 3  开发』</strong></p>
+<p>之后我们进入项目所在路径，<code>weex-toolkit</code> 已经为我们生成了标准项目结构。<br>在 <code>package.json</code>中，已经配置好了几个常用的 npm script，分别是：</p>
+<ul>
+<li><code>build</code>: 源码打包，生成 JS Bundle</li>
+<li><code>dev</code>: webpack watch 模式，方便开发</li>
+<li><code>serve</code>: 开启HotReload服务器，代码改动的将会实时同步到网页中</li>
+</ul>
+<p>我们先通过<code>npm install</code>安装项目依赖。之后运行根目录下的<code>npm run dev &amp; npm run serve</code>开启 watch 模式和静态服务器。</p>
+<p>然后我们打开浏览器，进入 <a target="_blank" rel="noopener" href="http://localhost:8080/index.html">http://localhost:8080/index.html</a> 即可看到 weex h5 页面。</p>
+<p>初始化时已经为我们创建了基本的示例，我们可以在<code>src/index.vue</code>中查看。</p>
+<p>代码如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot; @click=&quot;update&quot;&gt;</span><br><span class="line">    &lt;image :src=&quot;logoUrl&quot; class=&quot;logo&quot;&gt;&lt;/image&gt;</span><br><span class="line">    &lt;text class=&quot;title&quot;&gt;Hello &#123;&#123;target&#125;&#125;&lt;/text&gt;</span><br><span class="line">    &lt;text class=&quot;desc&quot;&gt;Now, let&#x27;s use vue to build your weex app.&lt;/text&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .wrapper &#123; align-items: center; margin-top: 120px; &#125;</span><br><span class="line">  .title &#123; padding-top:40px; padding-bottom: 40px; font-size: 48px; &#125;</span><br><span class="line">  .logo &#123; width: 360px; height: 156px; &#125;</span><br><span class="line">  .desc &#123; padding-top: 20px; color:#888; font-size: 24px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">      logoUrl: &#x27;http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png&#x27;,</span><br><span class="line">      target: &#x27;World&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      update: function (e) &#123;</span><br><span class="line">        this.target = &#x27;Weex&#x27;</span><br><span class="line">        console.log(&#x27;target:&#x27;, this.target)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>关于 Weex 语法部分，你可以直接参考 <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/">Vue Guide</a></li>
+<li>你可以在 <a target="_blank" rel="noopener" href="http://dotwe.org/vue/d48fbf8e8b2bb7bf555d0c380902eb37">dotWe</a> 写代码并随时预览。</li>
+<li><a target="_blank" rel="noopener" href="https://weex.apache.org/cn/guide/tools/toolkit.html">weex-toolkit 使用说明，请移步官网查看</a></li>
+<li><a target="_blank" rel="noopener" href="https://weex.apache.org/cn/playground.html">Weex Playground 工具</a></li>
+<li><a target="_blank" rel="noopener" href="https://market.dotwe.org/#7">Weex Market</a></li>
+<li><a target="_blank" rel="noopener" href="https://weex.apache.org/cn/guide/tools/plugin.html">Weex语法支持插件</a></li>
+</ol>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#weex" >
+    <span class="tag-code">weex</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/">
+        <span class="nav-arrow">← </span>
+        
+          安装 Node.js
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2017/10/17/2017/%E6%B6%88%E9%99%A4Mac%E4%B8%8B%E4%BD%BF%E7%94%A8sudo%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8Cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85/">
+        
+          使用sudo命令进行npm全局安装问题
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="nav">none</ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://memmrf.top/2017/09/29/2017/WEEX-开发环境搭建/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

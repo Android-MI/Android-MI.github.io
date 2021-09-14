@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      AndroidStudio上配置adb命令，实现无线真机调试 | 小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>AndroidStudio上配置adb命令，实现无线真机调试</h2>
+  <p class="post-date">2017-09-19</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="1-配置-adb-命令"><a href="#1-配置-adb-命令" class="headerlink" title="1. 配置 adb 命令"></a>1. 配置 adb 命令</h2><p>一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入<code>adb devices</code> 后，缺提示 <code>bash: adb: command not found</code> 。好吧，让我来先配置一下环境变量（<code>Mac OS 10.12.6</code> <code> jdk1.8.0_121</code>）。</p>
+<blockquote>
+<p>1.Mac下打开终端：Launchpad -&gt; 其他 -&gt; 终端<br>2.输入：<code>touch .bash_profile </code><br>3.打开：<code>open -e .bash_profile</code><br>4.保存：<code>source .bash_profile</code></p>
+</blockquote>
+<p>其中进行第3步，打开的 <strong>.bash_profile</strong> 文件，文件的路径一定要改成你自己电脑中的具体路径。</p>
+<p>我电脑中配置：  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH:/Users/xiaomi/Library/Android/sdk/tools/:/Users/xiaomi/Library/Android/sdk/platform-tools/</span><br><span class="line"></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM into a shell session *as a function*</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> <em>PATH</em> 变量中的 Android/sdk/tools 路径。</p>
+<p>执行 <code>source .bash_profile</code> 后，<br>输入 <code>adb</code> 命令，可见控制台输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Android Debug Bridge version 1.0.39</span><br><span class="line">Revision 5943271ace17-android</span><br><span class="line"></span><br><span class="line">global options:</span><br><span class="line"> -a         listen on all network interfaces, not just localhost</span><br><span class="line"> -d         use USB device (error if multiple devices connected)</span><br><span class="line"> -e         use TCP/IP device (error if multiple TCP/IP devices available)</span><br><span class="line"> -s SERIAL</span><br><span class="line">     use device with given serial number (overrides $ANDROID_SERIAL)</span><br><span class="line"> -p PRODUCT</span><br><span class="line">     name or path (&#x27;angler&#x27;/&#x27;out/target/product/angler&#x27;);</span><br><span class="line">     default $ANDROID_PRODUCT_OUT</span><br><span class="line"> -H         name of adb server host [default=localhost]</span><br><span class="line"> -P         port of adb server [default=5037]</span><br><span class="line"> -L SOCKET  listen on given socket for adb server [default=tcp:localhost:5037]</span><br><span class="line"></span><br><span class="line">general commands:</span><br><span class="line"> devices [-l]             list connected devices (-l for long output)</span><br><span class="line"> help                     show this help message</span><br><span class="line"> version                  show version num</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>OK~ 你该明白了吧。</p>
+<h2 id="2-AS-中手动实现无线真机调试"><a href="#2-AS-中手动实现无线真机调试" class="headerlink" title="2. AS 中手动实现无线真机调试"></a>2. AS 中手动实现无线真机调试</h2><p>无线真机调试很简单，无需插件，无需 Root，使用插件反而会将这个流程复杂化。先放上 <em>纯流程版</em> ，方便阅读之后快速查阅，</p>
+<h3 id="纯流程版"><a href="#纯流程版" class="headerlink" title="纯流程版"></a>纯流程版</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 将手机与电脑连接在同一局域网内</span><br><span class="line">2. 手机用线连接电脑，控制台输入命令adb devices, 有设备编号为连接成功</span><br><span class="line">3. 拔手机线，控制台输入命令 adb tcpip 5555，将TCP模式在 5555 端口启动，无任何输出为成功启动</span><br><span class="line">4. 控制台输入命令 adb connect 192.168.56.101:5555</span><br><span class="line">其中：192.168.56.101 为手机在局域网的 ip 地址，输出连接成功</span><br><span class="line">此时无线连接已经成功，正常调试即可</span><br></pre></td></tr></table></figure>
+<h3 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h3><p>打开 <strong>命令行终端</strong> ，键入<code>adb devices</code>，这个命令会输出所有连接到这台电脑上的设备，每个设备有一个独一无二的序列号。<br>见图 : </p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p>
+<p><strong>进行无线连接</strong></p>
+<p>输入命令<code>adb tcpip 5555</code>，这个命令的作用是打开手机的 TCP 模式，并且将其绑定到 5555 接口。其中，5555 端口是一个习惯使用的端口，就像 MySql 一般使用 3306 端口一样，也可以随意指定，只要不产生端口冲突即可。</p>
+<p>这条命令执行后没有任何输出，但是手机会出现一次，类似于与电脑断线并且重新插线的反应，代表执行成功。<br>打开成功之后，就可以拔掉手机数据线了。</p>
+<p>接下来执行连接命令，但是首先我们需要进入手机 WIFI 网络详情，找到此时手机 WIFI 中的 IP 地址。接下来就可以执行连接命令了，连接命令为 adb connect 手机 IP 地址: TCP 绑定的端口。</p>
+<p>例如，我手机的 IP 地址是 192.168.31.93，之前 TCP 模式绑定的端口为 5555，此时我需要执行的连接命令为 <code>adb connect 192.168.31.93:5555</code><br>此时控制台输出 connected to 192.168.31.93:5555，表示无线连接成功。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-82345073af59d522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="无线连接.png"></p>
+<p>TCP 模式一旦开启，只在手机重启时才会关闭，关闭后如果还需使用需要重新开启。断网重连，换 WIFI，不会关闭，只要保持手机电脑在统一 WIFI 下就不需要重新开启。</p>
+<p>不过如果手机一旦断网，或者切换 WIFI，与电脑的无线连接会立即断开，如果需要重新连接，重新执行一次 <code>adb connect</code> 命令就好。</p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>在项目中，直接点击 <strong>run</strong>，选择连接的设备即可。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-062796b8693c088d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="连接手机调试"></p>
+<p>然后，就可以开心的调试了。</p>
+<h2 id="3-补充：连接多台设备"><a href="#3-补充：连接多台设备" class="headerlink" title="3. 补充：连接多台设备"></a>3. 补充：连接多台设备</h2><p>使用<code>adb devices</code> 命令，可以得到一个已连接设备的序列号表，一次连接多台设备跟连接一台设备流程类似，通过 『<strong>序列号指定设备</strong> 』即可。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-e077378d8ef5293b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="模拟器和手机同时连接.png"></p>
+<p>例如，需要进行 TCP 模式开启，<code>adb -s f87c75bb tcpip 5555 </code>，但是与电脑建立连接的 adb connect 命令不需要加序列号，因为 IP 地址本来就相当于是序列号了。</p>
+<p>然后，查看手机连接的IPv4地址，比如我的是：192.168.0.200<br>执行 <code>adb connect 192.168.0.200:5555</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1552105-c5e2b5412dd95c07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p>
+<p>接下来，请开始你的调试吧。</p>
+<blockquote>
+<p>个人整理，难免有错误纰漏，欢迎指正。</p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2017/02/03/2017/Hexo-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/">
+        <span class="nav-arrow">← </span>
+        
+          Hexo相关问题收集
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2017/09/20/2017/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8gradlew%E5%91%BD%E4%BB%A4%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+        
+          Mac下使用gradlew命令注意事项
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-%E9%85%8D%E7%BD%AE-adb-%E5%91%BD%E4%BB%A4"><span class="toc-nav-text">1. 配置 adb 命令</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-AS-%E4%B8%AD%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BA%BF%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95"><span class="toc-nav-text">2. AS 中手动实现无线真机调试</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BA%AF%E6%B5%81%E7%A8%8B%E7%89%88"><span class="toc-nav-text">纯流程版</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%AF%A6%E7%BB%86%E7%89%88"><span class="toc-nav-text">详细版</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-nav-text">调试</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#3-%E8%A1%A5%E5%85%85%EF%BC%9A%E8%BF%9E%E6%8E%A5%E5%A4%9A%E5%8F%B0%E8%AE%BE%E5%A4%87"><span class="toc-nav-text">3. 补充：连接多台设备</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

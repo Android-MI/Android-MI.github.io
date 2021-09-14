@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Git常见安装问题 | 小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Git常见安装问题</h2>
+  <p class="post-date">2018-01-31</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置用户名(提交时候会引用)</p>
+<blockquote>
+<p><code>git config --global user.name &quot;yourusername&quot; </code>  『–global表示是全局的』</p>
+</blockquote>
+<h4 id="配置邮箱"><a href="#配置邮箱" class="headerlink" title="配置邮箱"></a>配置邮箱</h4><blockquote>
+<p><code>git config --golbal user.email &quot;youremail&quot;</code></p>
+</blockquote>
+<p>冲突merge使用版本 <code>git config --global merge.tool &quot;kdiff3&quot;</code> (没装kdiff3忽略本行)</p>
+<h4 id="让Git不要管Windows-Unix换行符转换的事"><a href="#让Git不要管Windows-Unix换行符转换的事" class="headerlink" title="让Git不要管Windows/Unix换行符转换的事"></a>让Git不要管Windows/Unix换行符转换的事</h4><blockquote>
+<p><code>git config --global core.autocrlf false</code></p>
+</blockquote>
+<h3 id="编码配置"><a href="#编码配置" class="headerlink" title="编码配置"></a>编码配置</h3><h4 id="避免git-gui中的中文乱码"><a href="#避免git-gui中的中文乱码" class="headerlink" title="避免git gui中的中文乱码"></a>避免git gui中的中文乱码</h4><blockquote>
+<p><code>git config --global gui.encoding utf-8</code></p>
+</blockquote>
+<h4 id="避免git-status显示的中文名乱码"><a href="#避免git-status显示的中文名乱码" class="headerlink" title="避免git status显示的中文名乱码"></a>避免git status显示的中文名乱码</h4><blockquote>
+<p><code>git config --global core.quotepath off</code></p>
+</blockquote>
+<h4 id="windows区分大小写设置"><a href="#windows区分大小写设置" class="headerlink" title="windows区分大小写设置"></a>windows区分大小写设置</h4><blockquote>
+<p><code>git config --global core.ignorecase false</code></p>
+</blockquote>
+<hr>
+<h3 id="使用命令：-git-status-查看状态"><a href="#使用命令：-git-status-查看状态" class="headerlink" title="使用命令： git status 查看状态"></a>使用命令： git status 查看状态</h3><p><code>git init</code>  初始化仓库<br><code>git add . </code> 将所有文件(除去忽略的文件，添加到仓库中)<br><code>git commit -am </code> “添加注释” 提交文件到仓库</p>
+<hr>
+<h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><p>1.复制远程仓库地址 <code>git@gitee.com:xxxxx/xxxx.git</code> 添加远程仓库</p>
+<blockquote>
+<p><code> git remote add origin git@gitee.com:xxxxx/xxxx.git</code></p>
+</blockquote>
+<p>2.查看分支</p>
+<blockquote>
+<p><code>git branch</code><br><code>git push -u[-f] origin master</code> (-f表示强制更新)</p>
+</blockquote>
+<p>提交代码到远程仓库</p>
+<blockquote>
+<ol>
+<li>先执行下  <code>git pull</code> 【拉取一下】</li>
+<li>执行 <code>git push -u origin master</code></li>
+<li>如果还报错的话 <code>git push -u -f origin master</code> 【强制替换更新】</li>
+</ol>
+</blockquote>
+<hr>
+<p>——主流的开发模式支线开发 主干发布——<br>查看本地分支<code>git branch</code><br>查看远程分支<code>git branch -r</code><br>— 创建分支<br><code>git checkout -b v1.0 origin/master</code> 【 -b表示创建新的分支 origin/master 表示v1.0在远程 master的基础上 】<br>发部到远程仓库<br><code>git push origin HEAD -u</code> 远程会有两个仓库 master v1.0</p>
+<blockquote>
+<p><code>git checkout [master/v1.0] </code>切换分支</p>
+</blockquote>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Git" >
+    <span class="tag-code">Git</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2018/01/30/2018/Android-%E5%AE%9A%E6%97%B6%E5%99%A8%E3%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B4%E7%90%86/">
+        <span class="nav-arrow">← </span>
+        
+          Android 定时器、定时任务整理
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/">
+        
+          Git SSH 配置（码云+Github）
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+    <!-- 二维码 END -->
+    
+      <!-- Utterances START -->
+      <div id="utterances"></div>
+      <script src="https://utteranc.es/client.js"
+        repo=""
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async></script>    
+      <!-- Utterances END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-nav-text">配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%85%8D%E7%BD%AE%E9%82%AE%E7%AE%B1"><span class="toc-nav-text">配置邮箱</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E8%AE%A9Git%E4%B8%8D%E8%A6%81%E7%AE%A1Windows-Unix%E6%8D%A2%E8%A1%8C%E7%AC%A6%E8%BD%AC%E6%8D%A2%E7%9A%84%E4%BA%8B"><span class="toc-nav-text">让Git不要管Windows&#x2F;Unix换行符转换的事</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BC%96%E7%A0%81%E9%85%8D%E7%BD%AE"><span class="toc-nav-text">编码配置</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%81%BF%E5%85%8Dgit-gui%E4%B8%AD%E7%9A%84%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81"><span class="toc-nav-text">避免git gui中的中文乱码</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E9%81%BF%E5%85%8Dgit-status%E6%98%BE%E7%A4%BA%E7%9A%84%E4%B8%AD%E6%96%87%E5%90%8D%E4%B9%B1%E7%A0%81"><span class="toc-nav-text">避免git status显示的中文名乱码</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#windows%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99%E8%AE%BE%E7%BD%AE"><span class="toc-nav-text">windows区分大小写设置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A-git-status-%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-nav-text">使用命令： git status 查看状态</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-nav-text">推送到远程仓库</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://memmrf.top/2018/01/31/2018/Git常见安装配置问题点/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', '/css/images/error_icon.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== '/css/images/error_icon.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/11/09/2017/Mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E5%88%A0%E9%99%A4MySql/">Mac下安装、配置、删除 mysql</a>
+      </h2>
+      <p class="article-date">November 9, 2017</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          转： [mac安装mysql的两种方法（含配置)]http://www.jianshu.com/p/fd3aae701db9
+1.修改默认密码
+前提： 配置好 mysql 环境变量
+
+1234567// 配置 MySQL 环境变量$ vi ~/.bash_profileexport MYSQ ...
+        
+      </div>
+      <a class="more" href="/2017/11/09/2017/Mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E5%88%A0%E9%99%A4MySql/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/11/02/2017/Mac%E4%B8%8BTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Mac下Tomcat安装和配置</a>
+      </h2>
+      <p class="article-date">November 2, 2017</p>
+      
+        
+  <a href="/tags#Java" >
+    <span class="tag-code">Java</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          闲话不说，直接开工：
+
+本人机器配置，更新于2017-11-2，以供各位参考Java : 1.8.0_121Tomcat : 8.5.23
+
+
+下载地址：Java Tomcat
+
+Tomcat不区分Linux版和Mac版,但Windows请选择对应的32位或者64位系统 zip 包即可。
+1 ...
+        
+      </div>
+      <a class="more" href="/2017/11/02/2017/Mac%E4%B8%8BTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/10/30/2017/Android%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5/">Android使用指定浏览器打开网页</a>
+      </h2>
+      <p class="article-date">October 30, 2017</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+梳理下流程：
+
+枚举对应浏览器包名到数组中
+数组循环根据包名找到对应的LaunchIntent
+通过LaunchIntent找到对应的LaunchActivity的包名
+Intent通过设置activity的包名+类名
+
+
+123456789101112131415161718192021 ...
+        
+      </div>
+      <a class="more" href="/2017/10/30/2017/Android%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/">Setting ANDROID_HOME enviromental variable on MacOS-X</a>
+      </h2>
+      <p class="article-date">October 17, 2017</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+转自stackoverflow
+
+Where the Android-SDK is installed depends on how you installed it.
+
+If you downloaded the SDK through their website and then dr ...
+        
+      </div>
+      <a class="more" href="/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/10/17/2017/%E6%B6%88%E9%99%A4Mac%E4%B8%8B%E4%BD%BF%E7%94%A8sudo%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8Cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85/">使用sudo命令进行npm全局安装问题</a>
+      </h2>
+      <p class="article-date">October 17, 2017</p>
+      
+        
+  <a href="/tags#Node.js" >
+    <span class="tag-code">Node.js</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+转~
+
+权限问题 Permisiion denied请不要使用sudo进行安装，关于npm 取消sudo进行全局模块的安装你可以使用下面的命令：
+
+sudo chmod 777 /usr/local/lib/node_modules
+
+如果你看到了下面的报错
+1Error:permissi ...
+        
+      </div>
+      <a class="more" href="/2017/10/17/2017/%E6%B6%88%E9%99%A4Mac%E4%B8%8B%E4%BD%BF%E7%94%A8sudo%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8Cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/29/2017/WEEX-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">weex开发环境搭建</a>
+      </h2>
+      <p class="article-date">September 29, 2017</p>
+      
+        
+  <a href="/tags#weex" >
+    <span class="tag-code">weex</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          ~『 NO. 1 安装依赖 』
+
+Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要 Node.js 和 Weex CLi。
+
+
+Node.js 安装方式，请移步 Node.js 安装
+
+安装完成后，可以使用以下命令检测是否安装成功：
+
+$ node  ...
+        
+      </div>
+      <a class="more" href="/2017/09/29/2017/WEEX-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/">安装 Node.js</a>
+      </h2>
+      <p class="article-date">September 29, 2017</p>
+      
+        
+  <a href="/tags#Node.js" >
+    <span class="tag-code">Node.js</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          ~『 NO. 1 』
+
+安装 Node.js 方式多种多样，最简单的方式是在 Node.js 官网 下载可执行程序直接安装即可。
+
+对于 Mac，可以使用 Homebrew 进行安装：brew install node
+
+更多安装方式可参考 Node.js 官方信息
+
+安装完成后，可以使用以 ...
+        
+      </div>
+      <a class="more" href="/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/20/2017/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8gradlew%E5%91%BD%E4%BB%A4%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Mac下使用gradlew命令注意事项</a>
+      </h2>
+      <p class="article-date">September 20, 2017</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          今天 发布代码到 bintray 时，使用 gradlew 命令出现几个小问题，特此记录一下。
+问题1：
+bash: ./gradlew:Permission denied
+
+需要改变gradlew的权限，请执行命令解决：chmod +x gradlew
+问题2：
+bash:gradlew  ...
+        
+      </div>
+      <a class="more" href="/2017/09/20/2017/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8gradlew%E5%91%BD%E4%BB%A4%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/09/19/2017/AndroidStudio%E4%B8%8A%E9%85%8D%E7%BD%AEadb%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BA%BF%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/">AndroidStudio上配置adb命令，实现无线真机调试</a>
+      </h2>
+      <p class="article-date">September 19, 2017</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          1. 配置 adb 命令一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入adb devices 后，缺提示 bash: adb: command not found 。好吧，让我来先配置一下环境变量（M ...
+        
+      </div>
+      <a class="more" href="/2017/09/19/2017/AndroidStudio%E4%B8%8A%E9%85%8D%E7%BD%AEadb%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BA%BF%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/02/03/2017/Hexo-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/">Hexo相关问题收集</a>
+      </h2>
+      <p class="article-date">February 3, 2017</p>
+      
+        
+  <a href="/tags#hexo" >
+    <span class="tag-code">hexo</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          文章收集
+Hexo搭建
+自动化部署Hexo
+部署Hexo博客1
+部署Hexo博客2
+Hexo搭建与部署
+为NexT主题添加文章阅读量统计功能
+
+主题搜集
+prontera
+nexthttps://www.jianshu.com/p/f054333ac9e6
+
+
+        
+      </div>
+      <a class="more" href="/2017/02/03/2017/Hexo-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>
+  
+</div>
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

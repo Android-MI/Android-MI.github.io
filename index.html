@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="人可以此生平凡，但不该平庸一生。">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      小米`s Blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+  
+    
+<script src="/js/local-search.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>小米`s Blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link active">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+      
+        <li class="menu-item menu-item-search right-list">
+    <a role="button" class="popup-trigger">
+        <i class="fa fa-search fa-fw"></i>
+    </a>
+</li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link mobile-active">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+    
+      <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+            <span class="search-icon">
+                <i class="fa fa-search"></i>
+            </span>
+            <div class="search-input-container">
+                <input autocomplete="off" autocapitalize="off"
+                    placeholder="Please enter your keyword(s) to search." spellcheck="false"
+                    type="search" class="search-input">
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times-circle"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+    
+  </div>
+</header>
+
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/">Git SSH 配置（码云+Github）</a>
+      </h2>
+      <p class="article-date">January 31, 2018</p>
+      
+        
+  <a href="/tags#Git" >
+    <span class="tag-code">Git</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          码云配置1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入
+
+ssh-keygen -t rsa -C &quot;xxxx@xx.com&quot;
+
+2.一直按回车(Enter),不要输入任何密码之类，生成 ssh key pair
+3.ssh-add ~ ...
+        
+      </div>
+      <a class="more" href="/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/31/2018/Git%E5%B8%B8%E8%A7%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E7%82%B9/">Git常见安装问题</a>
+      </h2>
+      <p class="article-date">January 31, 2018</p>
+      
+        
+  <a href="/tags#Git" >
+    <span class="tag-code">Git</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          配置配置用户名(提交时候会引用)
+
+git config --global user.name &quot;yourusername&quot;   『–global表示是全局的』
+
+配置邮箱
+git config --golbal user.email &quot;youremail&qu ...
+        
+      </div>
+      <a class="more" href="/2018/01/31/2018/Git%E5%B8%B8%E8%A7%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E7%82%B9/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/30/2018/Android-%E5%AE%9A%E6%97%B6%E5%99%A8%E3%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B4%E7%90%86/">Android 定时器、定时任务整理</a>
+      </h2>
+      <p class="article-date">January 30, 2018</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          1. ScheduledExecutorService
+Timer不支持多线程。全部挂在Timer下的任务都是单线程的，任务仅仅能串行运行。假设当中一个任务运行时间过长。会影响到其它任务的运行，然后就可能会有各种接踵而来的问题。
+
+Timer的线程不捕获异常。TimerTask假设抛出异常， ...
+        
+      </div>
+      <a class="more" href="/2018/01/30/2018/Android-%E5%AE%9A%E6%97%B6%E5%99%A8%E3%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B4%E7%90%86/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/2018/SpringBoot%E9%A1%B9%E7%9B%AE%E5%9C%A8IDEA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/">SpringBoot项目在IDEA中实现热部署</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#Springboot" >
+    <span class="tag-code">Springboot</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+版本： Intellij IDEA 2017.3 
+
+1. 引入插件引入热加载的插件，springboot 1.3开始就有的…
+12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&g ...
+        
+      </div>
+      <a class="more" href="/2018/01/01/2018/SpringBoot%E9%A1%B9%E7%9B%AE%E5%9C%A8IDEA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2018/01/01/2018/Hello-2018/">Hello 2018</a>
+      </h2>
+      <p class="article-date">January 1, 2018</p>
+      
+        
+  <a href="/tags#picture" >
+    <span class="tag-code">picture</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+
+        
+      </div>
+      <a class="more" href="/2018/01/01/2018/Hello-2018/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/12/18/2017/AndroidStudio-3.0-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96%E5%8F%8AIDE%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">AndroidStudio 3.0的一些变化</a>
+      </h2>
+      <p class="article-date">December 18, 2017</p>
+      
+        
+  <a href="/tags#Android" >
+    <span class="tag-code">Android</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。
+
+
+ [#CSDN#] Android Studio 3.0 的一些变化
+[#CSDN#] Gradle sync failed
+[#简书#]  ...
+        
+      </div>
+      <a class="more" href="/2017/12/18/2017/AndroidStudio-3.0-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96%E5%8F%8AIDE%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/12/12/2017/Mac%E7%89%88PHPStorm-%E8%B0%83%E6%95%B4%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6/">Mac版PHPStorm-调整内存限制</a>
+      </h2>
+      <p class="article-date">December 12, 2017</p>
+      
+        
+  <a href="/tags#日志" >
+    <span class="tag-code">日志</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          调整方法
+参考链接 https://segmentfault.com/a/1190000003960160
+
+123456789# 用的是 mac osx，编辑 phpstorm 的启动配置文件，其他平台根据情况选择:sudo vim /Applications/PhpStorm.app/C ...
+        
+      </div>
+      <a class="more" href="/2017/12/12/2017/Mac%E7%89%88PHPStorm-%E8%B0%83%E6%95%B4%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/11/22/2017/mozjpeg-pre-build-test-failed/">mozjpeg pre-build test failed</a>
+      </h2>
+      <p class="article-date">November 22, 2017</p>
+      
+        
+  <a href="/tags#日志" >
+    <span class="tag-code">日志</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+OS X 10.13.1 
+
+nasm -v
+NASM version 0.98.40 (Apple Computer, Inc. build 11) compiled on Oct 11 2017
+执行 npm install后发现控制台出现如下信息:
+12345678910111213 ...
+        
+      </div>
+      <a class="more" href="/2017/11/22/2017/mozjpeg-pre-build-test-failed/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/">上传library到自己创建的maven仓库</a>
+      </h2>
+      <p class="article-date">November 22, 2017</p>
+      
+        
+  <a href="/tags#Library" >
+    <span class="tag-code">Library</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          根目录build添加
+1234567891011121314151617buildscript &#123;repositories &#123;jcenter()&#125;dependencies &#123;classpath &#x27;com.android.tools.build ...
+        
+      </div>
+      <a class="more" href="/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/11/12/2017/Mac%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E5%90%8EGit%E4%B8%8D%E5%8F%AF%E7%94%A8,%E6%8F%90%E7%A4%BAmissing-xcrun-at-xxx/">Mac系统更新后Git不可用,提示missing-xcrun-at-xxx</a>
+      </h2>
+      <p class="article-date">November 12, 2017</p>
+      
+        
+  <a href="/tags#日志" >
+    <span class="tag-code">日志</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+记录于2017-11-13：更新后 MacOS 版本为 10.13.1
+
+今天系统升级后，发现原来开发 IDE 里的 git 托管项目，没法push和pull 操作了，然后看到控制台里提示信息：
+
+ xcrun: error: invalid active developer path ( ...
+        
+      </div>
+      <a class="more" href="/2017/11/12/2017/Mac%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E5%90%8EGit%E4%B8%8D%E5%8F%AF%E7%94%A8,%E6%8F%90%E7%A4%BAmissing-xcrun-at-xxx/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a class="unvisible" href="/"><span class="page-arrow">←</span> Prev</a>
+  
+  
+    <a href="/page/2/">Next<span class="page-arrow"> →</span></a>
+  
+</div>
+  
+</main>
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a target="_blank" rel="noopener" href="https://github.com/yanm1ng">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      hljs.configure({useBR: true});
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+
+  </body>
+</html>

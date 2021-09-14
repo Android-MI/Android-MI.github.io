@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小米`s Blog</title>
+  
+  <subtitle>人可以此生平凡，但不该平庸一生。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://memmrf.top/"/>
+  <updated>2018-01-31T05:32:22.000Z</updated>
+  <id>http://memmrf.top/</id>
+  
+  <author>
+    <name>小米`s</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git SSH 配置（码云+Github）</title>
+    <link href="http://memmrf.top/2018/01/31/2018/Git-SSH-%E9%85%8D%E7%BD%AE%EF%BC%88%E7%A0%81%E4%BA%91+Github%EF%BC%89/"/>
+    <id>http://memmrf.top/2018/01/31/2018/Git-SSH-配置（码云+Github）/</id>
+    <published>2018-01-31T05:30:12.000Z</published>
+    <updated>2018-01-31T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="码云配置"><a href="#码云配置" class="headerlink" title="码云配置"></a>码云配置</h3><p>1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入</p><blockquote><p><code>ssh-keygen -t rsa -C &quot;xxxx@xx.com&quot;</code></p></blockquote><p>2.一直按回车(Enter),不要输入任何密码之类，生成 ssh key pair</p><p>3.<code>ssh-add ~/.ssh/id_rsa</code><br>如果出现 <code>Could not open a connection to your authentiacation agent</code> 执行 <code>eval `ssh-agent` </code><br>在执行 <code>ssh-add ~/.ssh/rsa </code>成功 <code>ssh-add l </code>就有新加的rsa了</p><p>4.<code>cat ~/.ssh/id_rsa.pub </code>(查看)</p><p>5.将公钥复制出来</p><p>6.进入码云-个人设置-SSH公钥配置，把复制的东西加进去提交 。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;码云配置&quot;&gt;&lt;a href=&quot;#码云配置&quot; class=&quot;headerlink&quot; title=&quot;码云配置&quot;&gt;&lt;/a&gt;码云配置&lt;/h3&gt;&lt;p&gt;1.在linux的命令行下，或者是windows上Git Bash命令行窗口中键入&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Git" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Git/"/>
+    
+    
+      <category term="Git" scheme="http://memmrf.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git常见安装问题</title>
+    <link href="http://memmrf.top/2018/01/31/2018/Git%E5%B8%B8%E8%A7%81%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E7%82%B9/"/>
+    <id>http://memmrf.top/2018/01/31/2018/Git常见安装配置问题点/</id>
+    <published>2018-01-31T05:30:12.000Z</published>
+    <updated>2018-01-31T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>配置用户名(提交时候会引用)</p><blockquote><p><code>git config --global user.name &quot;yourusername&quot; </code>  『–global表示是全局的』</p></blockquote><h4 id="配置邮箱"><a href="#配置邮箱" class="headerlink" title="配置邮箱"></a>配置邮箱</h4><blockquote><p><code>git config --golbal user.email &quot;youremail&quot;</code></p></blockquote><p>冲突merge使用版本 <code>git config --global merge.tool &quot;kdiff3&quot;</code> (没装kdiff3忽略本行)</p><h4 id="让Git不要管Windows-Unix换行符转换的事"><a href="#让Git不要管Windows-Unix换行符转换的事" class="headerlink" title="让Git不要管Windows/Unix换行符转换的事"></a>让Git不要管Windows/Unix换行符转换的事</h4><blockquote><p><code>git config --global core.autocrlf false</code></p></blockquote><h3 id="编码配置"><a href="#编码配置" class="headerlink" title="编码配置"></a>编码配置</h3><h4 id="避免git-gui中的中文乱码"><a href="#避免git-gui中的中文乱码" class="headerlink" title="避免git gui中的中文乱码"></a>避免git gui中的中文乱码</h4><blockquote><p><code>git config --global gui.encoding utf-8</code></p></blockquote><h4 id="避免git-status显示的中文名乱码"><a href="#避免git-status显示的中文名乱码" class="headerlink" title="避免git status显示的中文名乱码"></a>避免git status显示的中文名乱码</h4><blockquote><p><code>git config --global core.quotepath off</code></p></blockquote><h4 id="windows区分大小写设置"><a href="#windows区分大小写设置" class="headerlink" title="windows区分大小写设置"></a>windows区分大小写设置</h4><blockquote><p><code>git config --global core.ignorecase false</code></p></blockquote><hr><h3 id="使用命令：-git-status-查看状态"><a href="#使用命令：-git-status-查看状态" class="headerlink" title="使用命令： git status 查看状态"></a>使用命令： git status 查看状态</h3><p><code>git init</code>  初始化仓库<br><code>git add . </code> 将所有文件(除去忽略的文件，添加到仓库中)<br><code>git commit -am </code> “添加注释” 提交文件到仓库</p><hr><h3 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h3><p>1.复制远程仓库地址 <code>git@gitee.com:xxxxx/xxxx.git</code> 添加远程仓库</p><blockquote><p><code> git remote add origin git@gitee.com:xxxxx/xxxx.git</code></p></blockquote><p>2.查看分支</p><blockquote><p><code>git branch</code><br><code>git push -u[-f] origin master</code> (-f表示强制更新)</p></blockquote><p>提交代码到远程仓库</p><blockquote><ol><li>先执行下  <code>git pull</code> 【拉取一下】</li><li>执行 <code>git push -u origin master</code></li><li>如果还报错的话 <code>git push -u -f origin master</code> 【强制替换更新】</li></ol></blockquote><hr><p>——主流的开发模式支线开发 主干发布——<br>查看本地分支<code>git branch</code><br>查看远程分支<code>git branch -r</code><br>— 创建分支<br><code>git checkout -b v1.0 origin/master</code> 【 -b表示创建新的分支 origin/master 表示v1.0在远程 master的基础上 】<br>发部到远程仓库<br><code>git push origin HEAD -u</code> 远程会有两个仓库 master v1.0</p><blockquote><p><code>git checkout [master/v1.0] </code>切换分支</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;配置&quot;&gt;&lt;a href=&quot;#配置&quot; class=&quot;headerlink&quot; title=&quot;配置&quot;&gt;&lt;/a&gt;配置&lt;/h3&gt;&lt;p&gt;配置用户名(提交时候会引用)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;git config --global user.name
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Git" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Git/"/>
+    
+    
+      <category term="Git" scheme="http://memmrf.top/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android 定时器、定时任务整理</title>
+    <link href="http://memmrf.top/2018/01/30/2018/Android-%E5%AE%9A%E6%97%B6%E5%99%A8%E3%80%81%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%95%B4%E7%90%86/"/>
+    <id>http://memmrf.top/2018/01/30/2018/Android-定时器、定时任务整理/</id>
+    <published>2018-01-30T05:30:12.000Z</published>
+    <updated>2018-01-30T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-ScheduledExecutorService"><a href="#1-ScheduledExecutorService" class="headerlink" title="1. ScheduledExecutorService"></a>1. ScheduledExecutorService</h2><ol><li><p>Timer不支持多线程。全部挂在Timer下的任务都是单线程的，任务仅仅能串行运行。假设当中一个任务运行时间过长。会影响到其它任务的运行，然后就可能会有各种接踵而来的问题。</p></li><li><p>Timer的线程不捕获异常。TimerTask假设抛出异常，那么Timer唯一的进程就会挂掉，这样挂在Timer下的全部任务都会无法继续运行。</p><p> 为了弥补Timer的缺陷，jdk1.5中引入了并发包。这里面提供的ScheduledExecutorService。详细实现类是：ScheduledThreadPoolExecutor。ScheduledThreadPoolExecutor支持多线程。同一时候在线程中对异常进行了捕获。</p></li></ol><p>  使用实例：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class Task2 extends TimerTask&#123;</span><br><span class="line"></span><br><span class="line">@SuppressWarnings(&quot;deprecation&quot;)</span><br><span class="line">@Override</span><br><span class="line">public void run() &#123;</span><br><span class="line">System.out.println(&quot;----task2 start--------&quot;+new Date().toLocaleString());</span><br><span class="line">try &#123;</span><br><span class="line">Thread.sleep(5000);</span><br><span class="line">&#125; catch (InterruptedException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(&quot;----5s later, task2 end--------&quot;+new Date().toLocaleString());</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">ScheduledExecutorService pool = Executors.newScheduledThreadPool(2);//启用2个线程</span><br><span class="line"></span><br><span class="line">Task1 t1 = new Task1();</span><br><span class="line">// 马上运行，任务消耗3秒。运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">pool.scheduleWithFixedDelay(t1, 0, 2, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">// 马上运行，任务消耗5秒，运行结束后等待2秒。【有空余线程时】，再次运行该任务</span><br><span class="line">Task2 t2 = new Task2();</span><br><span class="line">pool.scheduleWithFixedDelay(t2, 0, 2, TimeUnit.SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>运行结果：<br><img src="http://upload-images.jianshu.io/upload_images/1552105-89b0568020832ccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果.png"></p><p>这样任务之间就不会相互影响了。并且能够同一时候运行。可是线程数量要设置好了。</p><h4 id="在Android-使用也是如此："><a href="#在Android-使用也是如此：" class="headerlink" title="在Android 使用也是如此："></a>在Android 使用也是如此：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">private ScheduledExecutorService scheduleTaskExecutor;</span><br><span class="line"></span><br><span class="line">scheduleTaskExecutor = new ScheduledThreadPoolExecutor(1, new ThreadFactory() &#123;</span><br><span class="line">                    private AtomicInteger atoInteger = new AtomicInteger(0);</span><br><span class="line"></span><br><span class="line">                    @Override</span><br><span class="line">                    public Thread newThread(Runnable r) &#123;</span><br><span class="line">                        Thread t = new Thread(r);</span><br><span class="line">                        t.setName(&quot;App-Thread&quot; + atoInteger.getAndIncrement());</span><br><span class="line">                        return t;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">// 开启执行</span><br><span class="line">private void startScheduledTask() &#123;</span><br><span class="line">        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPDATE_DATA;</span><br><span class="line">                mHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1, 3, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> @Override</span><br><span class="line">    protected void onDestroy() &#123;</span><br><span class="line">        super.onDestroy();</span><br><span class="line">        if (scheduleTaskExecutor != null &amp;&amp; !scheduleTaskExecutor.isShutdown()) &#123;</span><br><span class="line">            scheduleTaskExecutor.shutdown();</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="2-Timer定时器"><a href="#2-Timer定时器" class="headerlink" title="2. Timer定时器"></a>2. Timer定时器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private Timer mTimer;</span><br><span class="line">mTimer = new Timer();</span><br><span class="line"></span><br><span class="line">// 开启任务</span><br><span class="line">private void startTimerTask() &#123;</span><br><span class="line">        mTimer.schedule(new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Message message = new Message();</span><br><span class="line">                message.what = UPLOAD_RIDING_LBS;</span><br><span class="line">                mMapLocHandler.sendMessage(message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, 1000, 3000);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 取消任务</span><br><span class="line">private void cancelTask()&#123;</span><br><span class="line">        if (mTimer != null) &#123;</span><br><span class="line">            mTimer.cancel();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><hr><h2 id="3-定时器的三种方法"><a href="#3-定时器的三种方法" class="headerlink" title="3.定时器的三种方法"></a>3.定时器的三种方法</h2><ol><li>第一种方法:Thread.sleep();方法</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = new Runnable() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                while (true) &#123;</span><br><span class="line">                    mHandler.sendEmptyMessage(0);</span><br><span class="line">                    try &#123;</span><br><span class="line">                        Thread.sleep(1000);</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">new Thread(runnable).start();</span><br></pre></td></tr></table></figure><ol start="2"><li>第二种方法:Handler的postDelay()方法</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">final Runnable runnable = new Runnable() &#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               if (isStart2) &#123;</span><br><span class="line">                   mHandler.sendEmptyMessage(0);</span><br><span class="line">                   mHandler.postDelayed(this, 1000);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">mHandler.postDelayed(runnable, 1000);</span><br></pre></td></tr></table></figure><ol start="3"><li>第三种:Timer和TimerTask</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> private Timer timer = new Timer();</span><br><span class="line">        private TimerTask timerTask = new TimerTask() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                mHandler.sendEmptyMessage(0);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">timer.schedule(timerTask, 1000, 1000);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-ScheduledExecutorService&quot;&gt;&lt;a href=&quot;#1-ScheduledExecutorService&quot; class=&quot;headerlink&quot; title=&quot;1. ScheduledExecutorService&quot;&gt;&lt;/a&gt;1. Sche
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot项目在IDEA中实现热部署</title>
+    <link href="http://memmrf.top/2018/01/01/2018/SpringBoot%E9%A1%B9%E7%9B%AE%E5%9C%A8IDEA%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/"/>
+    <id>http://memmrf.top/2018/01/01/2018/SpringBoot项目在IDEA中实现热部署/</id>
+    <published>2018-01-01T05:30:12.000Z</published>
+    <updated>2018-07-30T03:00:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>版本： <code>Intellij IDEA 2017.3 </code></p></blockquote><h2 id="1-引入插件"><a href="#1-引入插件" class="headerlink" title="1. 引入插件"></a>1. 引入插件</h2><p>引入热加载的插件，springboot 1.3开始就有的…</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt;</span><br><span class="line">    &lt;optional&gt;true&lt;/optional&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure><p>project 中添加<code>spring-boot-maven-plugin</code>,主要在eclipse中起作用，idea不需要加此配置。<br>SpringBoot 项目的话，应该是有此配置，加 <configuration> 里面的内容即可。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">       &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;configuration&gt;</span><br><span class="line">                    &lt;fork&gt;true&lt;/fork&gt;</span><br><span class="line">                &lt;/configuration&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure><h2 id="2-IDEA（2017-3）-配置"><a href="#2-IDEA（2017-3）-配置" class="headerlink" title="2. IDEA（2017.3）  配置"></a>2. IDEA（2017.3）  配置</h2><ol><li>点击： <code>File-&gt; Settings -&gt; Build ,Execution,Deployment -&gt; Compiler </code><blockquote><p>Mac版IDEA，使用快捷键 <code>command + ,</code> 打开 <code>Preferences</code><br>定位到<code>-&gt; Build ,Execution,Deployment -&gt; Compiler </code></p></blockquote></li></ol><p><img src="https://upload-images.jianshu.io/upload_images/1552105-1d6baae9f115170b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Compiler.png"></p><p>选中 <code>Build project automatically</code>，然后点击  <code>OK</code> 保存退出。</p><ol start="2"><li>使用组合键：<code>Shift+ALT+Ctrl+/</code> ，选择<code>Registry</code>，回车<blockquote><p>Mac版  <code>command + option +shift +/</code></p></blockquote></li></ol><p><img src="https://upload-images.jianshu.io/upload_images/1552105-3598a1828697e483.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/740" alt="Registry-01.png"><br><img src="https://upload-images.jianshu.io/upload_images/1552105-ca65db85c2ae5a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/940" alt="Registry-02.png"></p><p>搜索 <code>complier.automake.allow.when.app.running</code> ，找到后，勾选 ☑️ 退出即可。</p><ol start="3"><li>禁用浏览器缓存<br>按F12（更多工具—-&gt;开发者工具），找到network，勾选Disable Cache。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;版本： &lt;code&gt;Intellij IDEA 2017.3 &lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-引入插件&quot;&gt;&lt;a href=&quot;#1-引入插件&quot; class=&quot;headerlink&quot; title=&quot;1. 引入插
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Springboot" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Springboot/"/>
+    
+    
+      <category term="Springboot" scheme="http://memmrf.top/tags/Springboot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello 2018</title>
+    <link href="http://memmrf.top/2018/01/01/2018/Hello-2018/"/>
+    <id>http://memmrf.top/2018/01/01/2018/Hello-2018/</id>
+    <published>2017-12-31T16:00:00.000Z</published>
+    <updated>2021-09-14T15:23:00.955Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://ooo.0o0.ooo/2017/12/31/5a4902c63fb80.jpg" alt="hello2018.jpg"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2017/12/31/5a4902c63fb80.jpg&quot; alt=&quot;hello2018.jpg&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="图册" scheme="http://memmrf.top/categories/%E5%9B%BE%E5%86%8C/"/>
+    
+    
+      <category term="picture" scheme="http://memmrf.top/tags/picture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AndroidStudio 3.0的一些变化</title>
+    <link href="http://memmrf.top/2017/12/18/2017/AndroidStudio-3.0-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96%E5%8F%8AIDE%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%95%B4%E7%90%86/"/>
+    <id>http://memmrf.top/2017/12/18/2017/AndroidStudio-3.0-的一些变化及IDE配置问题整理/</id>
+    <published>2017-12-18T05:30:12.000Z</published>
+    <updated>2017-12-18T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。<br>如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。</p></blockquote><ol><li> <a href="http://blog.csdn.net/u011315960/article/details/78365629">[#CSDN#] Android Studio 3.0 的一些变化</a></li><li><a href="http://blog.csdn.net/yechaoa/article/details/78363911">[#CSDN#] Gradle sync failed</a></li><li><a href="http://www.jianshu.com/p/fb11b02af8f2">[#简书#] Android 构建速度</a></li><li><a href="http://blog.csdn.net/syif88/article/details/75009663">[#CSDN#]  Error:All flavors must now belong to a named flavor dimension</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;说明：文章和解决方案均转载各大网站和论坛，仅方便自己和他人遇到此类问题时快速解决。&lt;br&gt;如果链接/文章侵犯了您的版权和意愿，请下方留言，我会立即删除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt; &lt;a href=&quot;http://blo
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac版PHPStorm-调整内存限制</title>
+    <link href="http://memmrf.top/2017/12/12/2017/Mac%E7%89%88PHPStorm-%E8%B0%83%E6%95%B4%E5%86%85%E5%AD%98%E9%99%90%E5%88%B6/"/>
+    <id>http://memmrf.top/2017/12/12/2017/Mac版PHPStorm-调整内存限制/</id>
+    <published>2017-12-12T05:00:00.000Z</published>
+    <updated>2017-12-12T08:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="调整方法"><a href="#调整方法" class="headerlink" title="调整方法"></a>调整方法</h2><blockquote><p>参考链接 <a href="https://segmentfault.com/a/1190000003960160">https://segmentfault.com/a/1190000003960160</a></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 用的是 mac osx，编辑 phpstorm 的启动配置文件，其他平台根据情况选择:</span><br><span class="line">sudo vim /Applications/PhpStorm.app/Contents/bin/phpstorm.vmoptions</span><br><span class="line"></span><br><span class="line"># 修改参数，根据具体需要修改即可，一般修改  -Xmx(即最大可占内存)即可</span><br><span class="line">-Xms512m</span><br><span class="line">-Xmx2048m</span><br><span class="line">-XX:MaxPermSize=350m</span><br><span class="line">-XX:ReservedCodeCacheSize=240m</span><br><span class="line">-XX:+UseCompressedOops</span><br></pre></td></tr></table></figure><p>修改 Webstorm 同理：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-Xms512m</span><br><span class="line">-Xmx2048m</span><br><span class="line">-XX:MaxPermSize=350m</span><br><span class="line">-XX:ReservedCodeCacheSize=240m</span><br><span class="line">-XX:+UseCompressedOops </span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;调整方法&quot;&gt;&lt;a href=&quot;#调整方法&quot; class=&quot;headerlink&quot; title=&quot;调整方法&quot;&gt;&lt;/a&gt;调整方法&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;参考链接 &lt;a href=&quot;https://segmentfault.com/a/11900000
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="日志" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="日志" scheme="http://memmrf.top/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mozjpeg pre-build test failed</title>
+    <link href="http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/"/>
+    <id>http://memmrf.top/2017/11/22/2017/mozjpeg-pre-build-test-failed/</id>
+    <published>2017-11-22T04:00:00.000Z</published>
+    <updated>2017-11-22T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>OS X 10.13.1 </p></blockquote><p><code>nasm -v</code></p><p><code>NASM version 0.98.40 (Apple Computer, Inc. build 11) compiled on Oct 11 2017</code></p><p>执行 <code>npm install</code>后发现控制台出现如下信息:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mozjpeg@4.1.1 postinstall /Applications/XAMPP/xamppfiles/htdocs/bright-cms/node_modules/mozjpeg</span><br><span class="line">node lib/install.js</span><br><span class="line"></span><br><span class="line">  ⚠ The `/Applications/XAMPP/xamppfiles/htdocs/bright-cms/node_modules/mozjpeg/vendor/cjpeg` binary doesn&#x27;t seem to work correctly</span><br><span class="line">  ⚠ mozjpeg pre-build test failed</span><br><span class="line">  ℹ compiling from source</span><br><span class="line">  ✖ Error: autoreconf -fiv &amp;&amp; ./configure --disable-shared --prefix=&quot;/Applications/XAMPP/xamppfiles/htdocs/bright-cms/node_modules/mozjpeg/vendor&quot; --bindir=&quot;/Applications/XAMPP/xamppfiles/htdocs/bright-cms/node_modules/mozjpeg/vendor&quot; --libdir=&quot;/Applications/XAMPP/xamppfiles/htdocs/bright-cms/node_modules/mozjpeg/vendor&quot; &amp;&amp; make --jobs=4 &amp;&amp; make install --jobs=4</span><br><span class="line">Command failed: autoreconf -fiv</span><br><span class="line">    /bin/sh: autoreconf: command not found</span><br><span class="line">    at ChildProcess.exithandler (child_process.js:271:12)</span><br><span class="line">    at emitTwo (events.js:125:13)</span><br><span class="line">    at ChildProcess.emit (events.js:213:7)</span><br><span class="line">    at maybeClose (internal/child_process.js:927:16)</span><br><span class="line">    at Socket.stream.socket.on (internal/child_process.js:348:11)</span><br><span class="line">    at emitOne (events.js:115:13)</span><br><span class="line">    at Socket.emit (events.js:210:7)</span><br><span class="line">    at Pipe._handle.close [as _onclose] (net.js:547:12)</span><br></pre></td></tr></table></figure><blockquote><p>如下是问题解决的<a href="https://github.com/imagemin/imagemin/issues/168">链接地址</a></p></blockquote><blockquote><ol><li>Update Xcode command line tools to latest release</li><li>brew install nasm (I was using the bundled OS X version 0.98.40, now using 2.11.08)</li><li>npm cache clean</li><li>npm install</li></ol></blockquote><p>注：PNG reference library: libpng</p><ol><li><a href="https://sourceforge.net/projects/libpng/">PNG reference library: libpng</a></li><li><a href="http://ju.outofmemory.cn/entry/119281">Mac下ImageMagick安装(libpng)</a></li><li><a href="http://blog.csdn.net/mrzhangxl/article/details/77914115">Mac环境安装imagemagick</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;OS X 10.13.1 &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;nasm -v&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;NASM version 0.98.40 (Apple Computer, Inc. build 11) co
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="日志" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="日志" scheme="http://memmrf.top/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>上传library到自己创建的maven仓库</title>
+    <link href="http://memmrf.top/2017/11/22/2017/%E4%B8%8A%E4%BC%A0library%E5%88%B0%E8%87%AA%E5%B7%B1%E5%88%9B%E5%BB%BA%E7%9A%84maven%E4%BB%93%E5%BA%93/"/>
+    <id>http://memmrf.top/2017/11/22/2017/上传library到自己创建的maven仓库/</id>
+    <published>2017-11-22T04:00:00.000Z</published>
+    <updated>2017-11-22T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>根目录build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line"></span><br><span class="line">jcenter()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.android.tools.build:gradle:2.2.2&#x27;</span><br><span class="line"></span><br><span class="line">classpath &#x27;com.novoda:bintray-release:0.3.4&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>需要上传Library的build添加</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">apply plugin: &#x27;com.novoda.bintray-release&#x27;</span><br><span class="line"></span><br><span class="line">publish &#123;</span><br><span class="line"></span><br><span class="line">userOrg = &#x27;&#x27;      //bintray注册的用户名</span><br><span class="line"></span><br><span class="line">groupId = &#x27;&#x27;        //compile引用时的第1部分groupId</span><br><span class="line"></span><br><span class="line">artifactId = &#x27;&#x27;    //compile引用时的第2部分项目名</span><br><span class="line"></span><br><span class="line">publishVersion = &#x27;1.0.0&#x27;    //compile引用时的第3部分版本号</span><br><span class="line"></span><br><span class="line">desc = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">website = &#x27;&#x27;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>最后打开Termainal执行命令</p><p>发布到bintary 命令</p><p><code> ./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=自己KEY -PdryRun=false</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;根目录build添加&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Library" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Library/"/>
+    
+    
+      <category term="Library" scheme="http://memmrf.top/tags/Library/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac系统更新后Git不可用,提示missing-xcrun-at-xxx</title>
+    <link href="http://memmrf.top/2017/11/12/2017/Mac%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E5%90%8EGit%E4%B8%8D%E5%8F%AF%E7%94%A8,%E6%8F%90%E7%A4%BAmissing-xcrun-at-xxx/"/>
+    <id>http://memmrf.top/2017/11/12/2017/Mac系统更新后Git不可用,提示missing-xcrun-at-xxx/</id>
+    <published>2017-11-12T04:00:00.000Z</published>
+    <updated>2017-11-23T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>记录于2017-11-13：更新后 MacOS 版本为 <code>10.13.1</code></p></blockquote><p>今天系统升级后，发现原来开发 IDE 里的 git 托管项目，没法<code>push</code>和<code>pull</code> 操作了，然后看到控制台里提示信息：</p><blockquote><p><code> xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun</code></p></blockquote><p>百度一圈后，找到了解决方案，特摘录一份备份。</p><p>据说苹果每个版本更新后都有这样的问题，原因是每次安装更醒后，Xcode 都被卸载了。通过终端重新安装的Xcode命令行工具使用（其实这里安装的是Command Line Tools，Command Line Tools是在Xcode中的一款工具）</p><h2 id="1-命令行安装"><a href="#1-命令行安装" class="headerlink" title="1 :命令行安装"></a>1 :命令行安装</h2><blockquote><p><code>xcode-select --install</code></p></blockquote><p>按照提示安装完毕即可，安装成功后，重新查看 git 版本信息：</p><blockquote><p><code>git version</code></p></blockquote><p>至此，应该就算 OK 了，简单省事。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;记录于2017-11-13：更新后 MacOS 版本为 &lt;code&gt;10.13.1&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;今天系统升级后，发现原来开发 IDE 里的 git 托管项目，没法&lt;code&gt;push&lt;/code&gt;和&lt;co
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="日志" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%BF%97/"/>
+    
+    
+      <category term="日志" scheme="http://memmrf.top/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下安装、配置、删除 mysql</title>
+    <link href="http://memmrf.top/2017/11/09/2017/Mac%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E3%80%81%E5%88%A0%E9%99%A4MySql/"/>
+    <id>http://memmrf.top/2017/11/09/2017/Mac环境下安装、配置、删除MySql/</id>
+    <published>2017-11-09T05:30:12.000Z</published>
+    <updated>2017-11-09T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>转： [mac安装mysql的两种方法（含配置)]<a href="http://www.jianshu.com/p/fd3aae701db9">http://www.jianshu.com/p/fd3aae701db9</a></p><h2 id="1-修改默认密码"><a href="#1-修改默认密码" class="headerlink" title="1.修改默认密码"></a>1.修改默认密码</h2><blockquote><p>前提： 配置好 mysql 环境变量</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 配置 MySQL 环境变量</span><br><span class="line">$ vi ~/.bash_profile</span><br><span class="line"></span><br><span class="line">export MYSQL_HOME=/usr/local/mysql</span><br><span class="line">export PATH=$PATH:$MYSQL_HOME/bin</span><br><span class="line"></span><br><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 需要 MySQL 服务在运行状态执行</span><br><span class="line">$ cd /usr/local/mysql/bin</span><br><span class="line"></span><br><span class="line">$ SET PASSWORD FOR &#x27;root&#x27;@&#x27;localhost&#x27; = PASSWORD(&#x27;123456&#x27;);</span><br></pre></td></tr></table></figure><h2 id="2-MySql-的启动，停止和状态"><a href="#2-MySql-的启动，停止和状态" class="headerlink" title="2.MySql 的启动，停止和状态"></a>2.MySql 的启动，停止和状态</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/mysql</span><br><span class="line"></span><br><span class="line">// 启动</span><br><span class="line">$ sudo ./support-files/mysql.server start</span><br><span class="line"></span><br><span class="line">// 重启</span><br><span class="line">$ sudo support-files/mysql.server restart</span><br><span class="line"></span><br><span class="line">// 停止</span><br><span class="line">$ sudo support-files/mysql.server stop</span><br><span class="line"></span><br><span class="line">// 检查 MySQL 运行状态</span><br><span class="line">$ sudo support-files/mysql.server status</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="3-查看数据库"><a href="#3-查看数据库" class="headerlink" title="3.查看数据库"></a>3.查看数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/mysql/bin</span><br><span class="line">$ ./mysql -u root -p</span><br><span class="line">输入修改后的密码</span><br><span class="line"></span><br><span class="line">// 使用数据库</span><br><span class="line">mysql&gt; use mysql</span><br><span class="line"></span><br><span class="line">Reading table information for completion of table and column names</span><br><span class="line">You can turn off this feature to get a quicker startup with -A</span><br><span class="line"></span><br><span class="line">Database changed</span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure><hr><h3 id="mysql-备注："><a href="#mysql-备注：" class="headerlink" title="mysql 备注："></a>mysql 备注：</h3><p><strong>a.删除 mysql：</strong></p><figure class="highlight plaintext"><figcaption><span>rm</span><a href="/usr/local/mysql">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /usr/local/mysql*</span><br><span class="line">sudo rm -rf /Library/StartupItems/MySQLCOM</span><br><span class="line">sudo rm -rf /Library/PreferencePanes/My*</span><br><span class="line">vim /etc/hostconfig  (and removed the line MYSQLCOM=-YES-)</span><br><span class="line">rm -rf ~/Library/PreferencePanes/My*</span><br><span class="line">sudo rm -rf /Library/Receipts/mysql*</span><br><span class="line">sudo rm -rf /Library/Receipts/MySQL*</span><br><span class="line">sudo rm -rf /var/db/receipts/com.mysql.*</span><br></pre></td></tr></table></figure><p><strong>b.更改 mysql 安装目录所属用户与用户组:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo chown -R root:wheel mysql</span><br></pre></td></tr></table></figure><p><strong>c.切换到 mysql 安装目录并执行初始化命令并记录生成的临时 root 密码:</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/mysql</span><br><span class="line">sudo bin/mysqld --initialize --user=mysql</span><br></pre></td></tr></table></figure><p><strong>d.mysql的 Root 权限设置</strong></p><blockquote><p>转链接：<a href="http://www.jianshu.com/p/d926d66a4d60">http://www.jianshu.com/p/d926d66a4d60</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;转： [mac安装mysql的两种方法（含配置)]&lt;a href=&quot;http://www.jianshu.com/p/fd3aae701db9&quot;&gt;http://www.jianshu.com/p/fd3aae701db9&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-修改默认密码&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="JavaWeb" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/JavaWeb/"/>
+    
+    
+      <category term="Java" scheme="http://memmrf.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下Tomcat安装和配置</title>
+    <link href="http://memmrf.top/2017/11/02/2017/Mac%E4%B8%8BTomcat%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/"/>
+    <id>http://memmrf.top/2017/11/02/2017/Mac下Tomcat安装和配置/</id>
+    <published>2017-11-02T05:30:12.000Z</published>
+    <updated>2017-11-02T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>闲话不说，直接开工：</p><blockquote><p>本人机器配置，更新于2017-11-2，以供各位参考<br><code>Java : 1.8.0_121</code><br><code>Tomcat : 8.5.23</code></p></blockquote><blockquote><p>下载地址：<br><a href="https://www.java.com/zh_CN/download/mac_download.jsp">Java </a><br><a href="http://tomcat.apache.org/download-80.cgi">Tomcat</a></p></blockquote><p>Tomcat不区分Linux版和Mac版,但Windows请选择对应的32位或者64位系统 zip 包即可。</p><h2 id="1-下载-Tomact"><a href="#1-下载-Tomact" class="headerlink" title="1. 下载 Tomact"></a>1. 下载 Tomact</h2><p>真正的绿色软件，解压，放在指定位置即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-bb4160d3fcab25df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Tomcat 8.5.23.png"></p><h2 id="2-解压文件"><a href="#2-解压文件" class="headerlink" title="2. 解压文件"></a>2. 解压文件</h2><p>我是放在电脑的 「资源库」文件夹中。<br>具体位置在：</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-289fefbb1b80d1d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解压文件到指定目录.png"></p><h2 id="3-配置环境变量"><a href="#3-配置环境变量" class="headerlink" title="3. 配置环境变量"></a>3. 配置环境变量</h2><ul><li>打开控制台，编辑用户环境文件 <code>.bash_profile</code><blockquote><p><code>vi ~/.bash_profile</code></p></blockquote></li></ul><p>键入 <code>i</code>执行<code>插入</code>操作，</p><ul><li><p>在打开的文件中，添加 tomcat 路径</p><blockquote><p><code>export TOMCAT_PATH=/Users/xiaomi/Library/Tomcat/apache-tomcat-8.5.23/bin</code></p></blockquote></li><li><p>在原来 <code>PATH</code> 后追加 Tomcat 路径，以我本机配置为例（已省略一些其他信息）：</p></li></ul><blockquote><p><code> export PATH=$JAVA_HOME/bin:$&#123;TOMCAT_PATH&#125;</code></p></blockquote><p><strong>提示：</strong>  在原 <code>PATH</code> 后 使用 <code>:</code> 连接  <code>$&#123;TOMCAT_PATH&#125;</code> 即可。</p><ul><li>**保存退出 <code>:wq</code>**， 执行命令使刚才编辑的<code>.bash_profile</code>文件生效。<blockquote><p><code>source ~/.bash_profile</code></p></blockquote></li></ul><p>配置文件权限：</p><blockquote><p><code>cd /Users/(自己的用户目录)/Tomcat/apache-tomcat-8.5.23/bin</code><br><code>sudo chmod +x *.sh</code></p></blockquote><h2 id="4-启动-Tomcat，验证配置是否正确"><a href="#4-启动-Tomcat，验证配置是否正确" class="headerlink" title="4.启动 Tomcat，验证配置是否正确"></a>4.启动 Tomcat，验证配置是否正确</h2><blockquote><p><code>startup.sh </code> // 启动 tomcat<br>// 执行后即可访问 <a href="http://localhost:8080/">http://localhost:8080/</a><br><code>shutdown.sh</code>  // 关闭 tomcat</p></blockquote><p><img src="http://upload-images.jianshu.io/upload_images/1552105-a885363f62cd4ba8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="tomcat 启动.png"></p><p>也许你还想点『 Server Status 』按钮看看服务器状态，但你马上发现不行，你没有设置管理员的用户名/密码，它不让你看。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-288ed84048622f7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="查看服务器状态.png"></p><p>对于这种情况，我们看到<br>tomcat 7.0需要将manager-gui, manager-script, manager-jmx, manager-status, admin-gui, admin-script 这些全写上，故编辑</p><blockquote><p><code>../Tomcat/apache-tomcat-8.5.23/conf/tomcat-users.xml</code></p></blockquote><p>在文件里加入下面👇配置（用户名和密码自定义设置，我写的都是 admin）,</p><blockquote><p><code>&lt;role rolename=&quot;manager-gui&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-script&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-jmx&quot;/&gt;</code><br><code>&lt;role rolename=&quot;manager-status&quot;/&gt;</code><br><code>&lt;role rolename=&quot;admin-gui&quot;/&gt;</code><br><code>&lt;role rolename=&quot;admin-script&quot;/&gt;</code><br><code>&lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script&quot;/&gt;  </code></p></blockquote><p>重启 tomcat 后，这时候点击『 Server Status 』入下图所示：</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-34950d1440a00b36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Server Status.png"></p><blockquote><p>以上内容，整理自其他博文以便自己记录和查看，也希望能帮到他人。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;闲话不说，直接开工：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本人机器配置，更新于2017-11-2，以供各位参考&lt;br&gt;&lt;code&gt;Java : 1.8.0_121&lt;/code&gt;&lt;br&gt;&lt;code&gt;Tomcat : 8.5.23&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquo
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="JavaWeb" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/JavaWeb/"/>
+    
+    
+      <category term="Java" scheme="http://memmrf.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android使用指定浏览器打开网页</title>
+    <link href="http://memmrf.top/2017/10/30/2017/Android%E4%BD%BF%E7%94%A8%E6%8C%87%E5%AE%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5/"/>
+    <id>http://memmrf.top/2017/10/30/2017/Android使用指定浏览器打开网页/</id>
+    <published>2017-10-30T05:30:12.000Z</published>
+    <updated>2017-10-30T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>梳理下流程：</p><ol><li>枚举对应浏览器包名到数组中</li><li>数组循环根据包名找到对应的LaunchIntent</li><li>通过LaunchIntent找到对应的LaunchActivity的包名</li><li>Intent通过设置activity的包名+类名</li></ol></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 工具类</span><br><span class="line">*/</span><br><span class="line">public class CheckApkExist &#123;</span><br><span class="line">    private static String ucPkgName = &quot;com.uc.browser&quot;;</span><br><span class="line"></span><br><span class="line">    public static boolean checkApkExist(Context context, String packageName)&#123;</span><br><span class="line">        if (TextUtils.isEmpty(packageName))</span><br><span class="line">            return false;</span><br><span class="line">        try &#123;</span><br><span class="line">            ApplicationInfo info = context.getPackageManager()</span><br><span class="line">                    .getApplicationInfo(packageName,</span><br><span class="line">                            PackageManager.GET_UNINSTALLED_PACKAGES);</span><br><span class="line">            return true;</span><br><span class="line">        &#125; catch (PackageManager.NameNotFoundException e) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /** 示例：uc 浏览器检测*/</span><br><span class="line">    public static boolean checkUCBrowserExist(Context context)&#123;</span><br><span class="line">        return checkApkExist(context, ucPkgName);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/** </span><br><span class="line">*   从手机上搜索已安装浏览器程序打开网页,默认使用系统浏览器。</span><br><span class="line">*   将 context 替换为当前上下文环境，ActivityClass or  Context</span><br><span class="line">*/</span><br><span class="line">public void openBrowser(String url) &#123; </span><br><span class="line">            String[] browser = &#123;&quot;com.tencent.mtt&quot;, &quot;com.UCMobile&quot;, &quot;com.uc.browser&quot;, &quot;com.oupeng.browser&quot;, &quot;com.oupeng.mini.android&quot;, &quot;com.android.browser&quot;&#125;;</span><br><span class="line"></span><br><span class="line">            Intent intent = null;</span><br><span class="line">            for (String br : browser) &#123;</span><br><span class="line">                if (CheckApkExist.checkApkExist(context, br)) &#123;</span><br><span class="line">                    String clsName = null;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        PackageManager pm = context.getApplicationContext().getPackageManager();</span><br><span class="line">                        Intent intent1 = pm.getLaunchIntentForPackage(br);</span><br><span class="line">                        ComponentName act = intent1.resolveActivity(pm);</span><br><span class="line">                        clsName = act.getClassName();</span><br><span class="line">                    &#125; catch (Exception e) &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (clsName == null) &#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    intent = new Intent();</span><br><span class="line">                    intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                    Uri content_url = Uri.parse(url);</span><br><span class="line">                    intent.setData(content_url);</span><br><span class="line">                    intent.setClassName(br, clsName);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (intent == null) &#123;</span><br><span class="line">                intent = new Intent();</span><br><span class="line">                intent.setAction(&quot;android.intent.action.VIEW&quot;);</span><br><span class="line">                Uri content_url = Uri.parse(url);</span><br><span class="line">                intent.setData(content_url);</span><br><span class="line">            &#125;</span><br><span class="line">            context.startActivity(intent);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;梳理下流程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;枚举对应浏览器包名到数组中&lt;/li&gt;
+&lt;li&gt;数组循环根据包名找到对应的LaunchIntent&lt;/li&gt;
+&lt;li&gt;通过LaunchIntent找到对应的LaunchActivity的包名&lt;/li&gt;
+&lt;li&gt;
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Setting ANDROID_HOME enviromental variable on MacOS-X</title>
+    <link href="http://memmrf.top/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/"/>
+    <id>http://memmrf.top/2017/10/17/2017/Setting-ANDROID_HOME-enviromental-variable-on-Mac-OS-X/</id>
+    <published>2017-10-17T05:30:12.000Z</published>
+    <updated>2017-10-18T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x">转自stackoverflow</a></p></blockquote><h4 id="Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it"><a href="#Where-the-Android-SDK-is-installed-depends-on-how-you-installed-it" class="headerlink" title="Where the Android-SDK is installed depends on how you installed it."></a>Where the Android-SDK is installed depends on how you installed it.</h4><ul><li><ol><li>If you downloaded the SDK through their website and then dragged/dropped the Application to your Applications folder, it’s most likely here:<br><code>/Applications/ADT/sdk (as it is in your case).</code></li></ol></li><li><ol start="2"><li>If you installed the SDK using Homebrew (brew cask install android-sdk), then it’s located here:<br><code>/usr/local/Caskroom/android-sdk/&#123;YOUR_SDK_VERSION_NUMBER&#125;</code></li></ol></li><li><ol start="3"><li>If the SDK was installed automatically as part of Android Studio then it’s located here:<br><code>/Users/&#123;YOUR_USER_NAME&#125;/Library/Android/sdk</code></li></ol></li></ul><h4 id="Once-you-know-the-location-open-a-terminal-window-and-enter-the-following-changing-out-the-path-to-the-SDK-to-be-however-you-installed-it"><a href="#Once-you-know-the-location-open-a-terminal-window-and-enter-the-following-changing-out-the-path-to-the-SDK-to-be-however-you-installed-it" class="headerlink" title="Once you know the location, open a terminal window and enter the following (changing out the path to the SDK to be however you installed it):"></a>Once you know the location, open a terminal window and enter the following (changing out the path to the SDK to be however you installed it):</h4><p><code>export ANDROID_HOME=&#123;YOUR_PATH&#125;</code></p><h4 id="Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable"><a href="#Once-you-have-this-set-you-need-to-add-this-to-the-PATH-environment-variable" class="headerlink" title="Once you have this set, you need to add this to the PATH environment variable:"></a>Once you have this set, you need to add this to the PATH environment variable:</h4><p><code>export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools</code></p><h4 id="Lastly-apply-these-changes-by-re-sourcing-bash-profile"><a href="#Lastly-apply-these-changes-by-re-sourcing-bash-profile" class="headerlink" title="Lastly apply these changes by re-sourcing .bash_profile:"></a>Lastly apply these changes by re-sourcing .bash_profile:</h4><p><code>source ~/.bash_profile</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/19986214/setting-android-home-enviromental-variable-on-mac-os-x&quot;&gt;转自stackoverflo
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用sudo命令进行npm全局安装问题</title>
+    <link href="http://memmrf.top/2017/10/17/2017/%E6%B6%88%E9%99%A4Mac%E4%B8%8B%E4%BD%BF%E7%94%A8sudo%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8Cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85/"/>
+    <id>http://memmrf.top/2017/10/17/2017/消除Mac下使用sudo命令进行npm全局安装/</id>
+    <published>2017-10-17T05:30:12.000Z</published>
+    <updated>2017-10-17T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="http://www.jackpu.com/xiao-chu-macxia-npmquan-ju-an-zhuang-shi-yong-sudoming-ling/">转~</a></p></blockquote><h3 id="权限问题-Permisiion-denied"><a href="#权限问题-Permisiion-denied" class="headerlink" title="权限问题 Permisiion denied"></a>权限问题 Permisiion denied</h3><p>请不要使用sudo进行安装，关于npm 取消sudo进行全局模块的安装你可以使用下面的命令：</p><blockquote><p><code>sudo chmod 777 /usr/local/lib/node_modules</code></p></blockquote><p>如果你看到了下面的报错</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error:permission denied.Please apply the write premission to the directory: &quot;/Users/yourUserName&quot;</span><br></pre></td></tr></table></figure><p>我们建议你运行 <code>sudo chmod 777 ~</code> or <code>mkdir ~/.xtoolkit&amp;chmod 777 .xtoolkit</code> 来解决</p><h4 id="Windows用户安装可能有fsevents模块报错"><a href="#Windows用户安装可能有fsevents模块报错" class="headerlink" title="#Windows用户安装可能有fsevents模块报错"></a>#Windows用户安装可能有fsevents模块报错</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error:permission denied.Please apply the write premission to the directory: &quot;/Users/yourUserName&quot;</span><br></pre></td></tr></table></figure><p>首先你应该删除安装路径中<code>weex-toolkit</code>中的<code>node_modules</code>（路径可以在报错命令行中看到）,删除后运行下面的命令:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --no-optional weex-toolkit -g</span><br></pre></td></tr></table></figure><h4 id="旧版本升级报错"><a href="#旧版本升级报错" class="headerlink" title="旧版本升级报错"></a>旧版本升级报错</h4><p>首先检查你的npm版本是否大于等于5.0，如果没有，请通过<code>npm update npm -g</code>升级。<br>运行如下命令重新安装</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf ~/.xtoolkit</span><br><span class="line">npm un weex-toolkit -g</span><br><span class="line">npm i weex-toolkit -g</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.jackpu.com/xiao-chu-macxia-npmquan-ju-an-zhuang-shi-yong-sudoming-ling/&quot;&gt;转~&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Node.js" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>weex开发环境搭建</title>
+    <link href="http://memmrf.top/2017/09/29/2017/WEEX-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <id>http://memmrf.top/2017/09/29/2017/WEEX-开发环境搭建/</id>
+    <published>2017-09-29T04:00:00.000Z</published>
+    <updated>2017-09-29T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>~『 NO. 1 安装依赖 』</strong></p><blockquote><p>Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要 Node.js 和 <a href="https://github.com/weexteam/weex-toolkit">Weex CLi</a>。</p></blockquote><blockquote><p><code>Node.js</code> 安装方式，请移步 <a href="http://www.jianshu.com/p/3d7c3f5ecf1f">Node.js 安装</a></p></blockquote><p>安装完成后，可以使用以下命令检测是否安装成功：</p><blockquote><p>$ <code>node -v</code><br>v6.11.3<br>$ <code>npm -v</code><br>3.10.10 </p></blockquote><p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p><p>注意: 在 <code>weex-toolkit</code>1.0.8 版本后添加了npm5规范的 <code>npm-shrinkwrap.json</code>用于锁定包依赖，故npm版本&lt;5的用户需要通过<code>npm i npm@latest -g</code><br>更新一下npm的版本，使用前请确认版本是否正确。</p><blockquote><p>$<code>npm install -g weex-toolkit</code><br>$ <code>weex -v </code>//查看当前weex版本</p></blockquote><p>weex-toolkit也支持直接升级子依赖，如：</p><blockquote><p><code>weex update weex-devtool@latest </code>//@后标注版本后，latest表示最新</p></blockquote><p>提示：<br>如果提示权限错误（<em>permission error</em>），使用 <code>sudo</code>关键字进行安装</p><blockquote><p>$ <code>sudo npm install -g weex-toolkit</code></p></blockquote><p>安装结束后你可以直接使用 <code>weex</code> 命令验证是否安装成功，它会显示  <code>weex</code>命令行工具各参数：</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-b1d127f85238eed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/840" alt="weex 命令行工具各参数.png"></p><p><strong>~『 NO. 2 初始化 』</strong></p><p>然后初始化 Weex 项目：</p><blockquote><p>$ <code>weex create awesome-project</code></p></blockquote><p>执行完命令后，在 <code>awesome-project</code> 目录中就创建了一个使用 Weex 和 Vue 的模板项目</p><p><strong>~『 NO. 3  开发』</strong></p><p>之后我们进入项目所在路径，<code>weex-toolkit</code> 已经为我们生成了标准项目结构。<br>在 <code>package.json</code>中，已经配置好了几个常用的 npm script，分别是：</p><ul><li><code>build</code>: 源码打包，生成 JS Bundle</li><li><code>dev</code>: webpack watch 模式，方便开发</li><li><code>serve</code>: 开启HotReload服务器，代码改动的将会实时同步到网页中</li></ul><p>我们先通过<code>npm install</code>安装项目依赖。之后运行根目录下的<code>npm run dev &amp; npm run serve</code>开启 watch 模式和静态服务器。</p><p>然后我们打开浏览器，进入 <a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a> 即可看到 weex h5 页面。</p><p>初始化时已经为我们创建了基本的示例，我们可以在<code>src/index.vue</code>中查看。</p><p>代码如下所示：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;wrapper&quot; @click=&quot;update&quot;&gt;</span><br><span class="line">    &lt;image :src=&quot;logoUrl&quot; class=&quot;logo&quot;&gt;&lt;/image&gt;</span><br><span class="line">    &lt;text class=&quot;title&quot;&gt;Hello &#123;&#123;target&#125;&#125;&lt;/text&gt;</span><br><span class="line">    &lt;text class=&quot;desc&quot;&gt;Now, let&#x27;s use vue to build your weex app.&lt;/text&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  .wrapper &#123; align-items: center; margin-top: 120px; &#125;</span><br><span class="line">  .title &#123; padding-top:40px; padding-bottom: 40px; font-size: 48px; &#125;</span><br><span class="line">  .logo &#123; width: 360px; height: 156px; &#125;</span><br><span class="line">  .desc &#123; padding-top: 20px; color:#888; font-size: 24px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">      logoUrl: &#x27;http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png&#x27;,</span><br><span class="line">      target: &#x27;World&#x27;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      update: function (e) &#123;</span><br><span class="line">        this.target = &#x27;Weex&#x27;</span><br><span class="line">        console.log(&#x27;target:&#x27;, this.target)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><blockquote><ol><li>关于 Weex 语法部分，你可以直接参考 <a href="https://vuejs.org/v2/guide/">Vue Guide</a></li><li>你可以在 <a href="http://dotwe.org/vue/d48fbf8e8b2bb7bf555d0c380902eb37">dotWe</a> 写代码并随时预览。</li><li><a href="https://weex.apache.org/cn/guide/tools/toolkit.html">weex-toolkit 使用说明，请移步官网查看</a></li><li><a href="https://weex.apache.org/cn/playground.html">Weex Playground 工具</a></li><li><a href="https://market.dotwe.org/#7">Weex Market</a></li><li><a href="https://weex.apache.org/cn/guide/tools/plugin.html">Weex语法支持插件</a></li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;~『 NO. 1 安装依赖 』&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要 Node.js 和 &lt;a href=&quot;https://github.com/
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Weex" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Weex/"/>
+    
+    
+      <category term="weex" scheme="http://memmrf.top/tags/weex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装 Node.js</title>
+    <link href="http://memmrf.top/2017/09/29/2017/%E5%AE%89%E8%A3%85Node.js/"/>
+    <id>http://memmrf.top/2017/09/29/2017/安装Node.js/</id>
+    <published>2017-09-29T04:00:00.000Z</published>
+    <updated>2017-09-29T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>~『 NO. 1 』</strong></p><blockquote><p>安装 <code>Node.js</code> 方式多种多样，最简单的方式是在 <a href="https://nodejs.org/en/">Node.js 官网</a> 下载可执行程序直接安装即可。</p></blockquote><p>对于 Mac，可以使用 <a href="http://brew.sh/">Homebrew</a> 进行安装：<br><code>brew install node</code></p><blockquote><p>更多安装方式可参考 <a href="https://nodejs.org/en/download/">Node.js 官方信息</a></p></blockquote><p>安装完成后，可以使用以下命令检测是否安装成功：</p><blockquote><p>$ node -v<br>v6.11.3<br>$ npm -v<br>3.10.10 </p></blockquote><p>通常，安装了 Node.js 环境，npm 包管理工具也随之安装了。</p><p><strong>~『 NO. 2 』</strong></p><blockquote><p>npm版本&lt;5的用户需要通过<code>npm i npm@latest -g </code>更新一下npm的版本，使用前请确认版本是否正确。</p></blockquote><p><strong>~『 NO. 3 』</strong></p><blockquote><p>国内开发者可以考虑使用淘宝的 npm 镜像 —— <a href="https://npm.taobao.org/">cnpm</a> 安装 weex-toolkit</p></blockquote><blockquote><p>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;strong&gt;~『 NO. 1 』&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装 &lt;code&gt;Node.js&lt;/code&gt; 方式多种多样，最简单的方式是在 &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node.js 官网&lt;/a&gt; 下
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Node.js" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Node-js/"/>
+    
+    
+      <category term="Node.js" scheme="http://memmrf.top/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下使用gradlew命令注意事项</title>
+    <link href="http://memmrf.top/2017/09/20/2017/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8gradlew%E5%91%BD%E4%BB%A4%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://memmrf.top/2017/09/20/2017/Mac下使用gradlew命令注意事项/</id>
+    <published>2017-09-20T05:30:12.000Z</published>
+    <updated>2017-09-20T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天 发布代码到 bintray 时，使用 gradlew 命令出现几个小问题，特此记录一下。</p><h3 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h3><blockquote><p><strong><code>bash: ./gradlew:Permission denied</code></strong></p></blockquote><p>需要改变gradlew的权限，请执行命令解决：<code>chmod +x gradlew</code></p><h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><blockquote><p><strong><code>bash:gradlew :command not found</code></strong></p></blockquote><p>Mac 下执行这句指令，需要在**<code>gradlew</code>**前加 <code>./</code></p><p>例：<code>./gradlew clean build bintrayUpload -PbintrayUser=用户名 -PbintrayKey=你的 API key -PdryRun=false </code></p><p>具体上传步骤，参照了下面的文章：</p><blockquote><ol><li><a href="http://www.jianshu.com/p/1436a2caeddb">Android快速发布项目到jcenter</a></li><li><a href="http://blog.csdn.net/xingshen58/article/details/51644599">上传jcenter的“第一次”所遇到的坑 </a></li><li><a href="http://blog.csdn.net/u013424496/article/details/52684213">Gradle 命令配置</a></li></ol></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天 发布代码到 bintray 时，使用 gradlew 命令出现几个小问题，特此记录一下。&lt;/p&gt;
+&lt;h3 id=&quot;问题1：&quot;&gt;&lt;a href=&quot;#问题1：&quot; class=&quot;headerlink&quot; title=&quot;问题1：&quot;&gt;&lt;/a&gt;问题1：&lt;/h3&gt;&lt;blockquot
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AndroidStudio上配置adb命令，实现无线真机调试</title>
+    <link href="http://memmrf.top/2017/09/19/2017/AndroidStudio%E4%B8%8A%E9%85%8D%E7%BD%AEadb%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BA%BF%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/"/>
+    <id>http://memmrf.top/2017/09/19/2017/AndroidStudio上配置adb命令，实现无线真机调试/</id>
+    <published>2017-09-19T05:30:12.000Z</published>
+    <updated>2017-09-19T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-配置-adb-命令"><a href="#1-配置-adb-命令" class="headerlink" title="1. 配置 adb 命令"></a>1. 配置 adb 命令</h2><p>一直想在AndroidStudio的Terminal中 输入 adb 命令，但是终究没有尝试。今天心血来潮想试试无线调试，可是在控制台输入<code>adb devices</code> 后，缺提示 <code>bash: adb: command not found</code> 。好吧，让我来先配置一下环境变量（<code>Mac OS 10.12.6</code> <code> jdk1.8.0_121</code>）。</p><blockquote><p>1.Mac下打开终端：Launchpad -&gt; 其他 -&gt; 终端<br>2.输入：<code>touch .bash_profile </code><br>3.打开：<code>open -e .bash_profile</code><br>4.保存：<code>source .bash_profile</code></p></blockquote><p>其中进行第3步，打开的 <strong>.bash_profile</strong> 文件，文件的路径一定要改成你自己电脑中的具体路径。</p><p>我电脑中配置：  </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH:/Users/xiaomi/Library/Android/sdk/tools/:/Users/xiaomi/Library/Android/sdk/platform-tools/</span><br><span class="line"></span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line"></span><br><span class="line">[[ -s &quot;$HOME/.rvm/scripts/rvm&quot; ]] &amp;&amp; source &quot;$HOME/.rvm/scripts/rvm&quot; # Load RVM into a shell session *as a function*</span><br></pre></td></tr></table></figure><p><strong>注意：</strong> <em>PATH</em> 变量中的 Android/sdk/tools 路径。</p><p>执行 <code>source .bash_profile</code> 后，<br>输入 <code>adb</code> 命令，可见控制台输出：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Android Debug Bridge version 1.0.39</span><br><span class="line">Revision 5943271ace17-android</span><br><span class="line"></span><br><span class="line">global options:</span><br><span class="line"> -a         listen on all network interfaces, not just localhost</span><br><span class="line"> -d         use USB device (error if multiple devices connected)</span><br><span class="line"> -e         use TCP/IP device (error if multiple TCP/IP devices available)</span><br><span class="line"> -s SERIAL</span><br><span class="line">     use device with given serial number (overrides $ANDROID_SERIAL)</span><br><span class="line"> -p PRODUCT</span><br><span class="line">     name or path (&#x27;angler&#x27;/&#x27;out/target/product/angler&#x27;);</span><br><span class="line">     default $ANDROID_PRODUCT_OUT</span><br><span class="line"> -H         name of adb server host [default=localhost]</span><br><span class="line"> -P         port of adb server [default=5037]</span><br><span class="line"> -L SOCKET  listen on given socket for adb server [default=tcp:localhost:5037]</span><br><span class="line"></span><br><span class="line">general commands:</span><br><span class="line"> devices [-l]             list connected devices (-l for long output)</span><br><span class="line"> help                     show this help message</span><br><span class="line"> version                  show version num</span><br><span class="line">......</span><br></pre></td></tr></table></figure><p>OK~ 你该明白了吧。</p><h2 id="2-AS-中手动实现无线真机调试"><a href="#2-AS-中手动实现无线真机调试" class="headerlink" title="2. AS 中手动实现无线真机调试"></a>2. AS 中手动实现无线真机调试</h2><p>无线真机调试很简单，无需插件，无需 Root，使用插件反而会将这个流程复杂化。先放上 <em>纯流程版</em> ，方便阅读之后快速查阅，</p><h3 id="纯流程版"><a href="#纯流程版" class="headerlink" title="纯流程版"></a>纯流程版</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. 将手机与电脑连接在同一局域网内</span><br><span class="line">2. 手机用线连接电脑，控制台输入命令adb devices, 有设备编号为连接成功</span><br><span class="line">3. 拔手机线，控制台输入命令 adb tcpip 5555，将TCP模式在 5555 端口启动，无任何输出为成功启动</span><br><span class="line">4. 控制台输入命令 adb connect 192.168.56.101:5555</span><br><span class="line">其中：192.168.56.101 为手机在局域网的 ip 地址，输出连接成功</span><br><span class="line">此时无线连接已经成功，正常调试即可</span><br></pre></td></tr></table></figure><h3 id="详细版"><a href="#详细版" class="headerlink" title="详细版"></a>详细版</h3><p>打开 <strong>命令行终端</strong> ，键入<code>adb devices</code>，这个命令会输出所有连接到这台电脑上的设备，每个设备有一个独一无二的序列号。<br>见图 : </p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-22014e24ffc65c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p><p><strong>进行无线连接</strong></p><p>输入命令<code>adb tcpip 5555</code>，这个命令的作用是打开手机的 TCP 模式，并且将其绑定到 5555 接口。其中，5555 端口是一个习惯使用的端口，就像 MySql 一般使用 3306 端口一样，也可以随意指定，只要不产生端口冲突即可。</p><p>这条命令执行后没有任何输出，但是手机会出现一次，类似于与电脑断线并且重新插线的反应，代表执行成功。<br>打开成功之后，就可以拔掉手机数据线了。</p><p>接下来执行连接命令，但是首先我们需要进入手机 WIFI 网络详情，找到此时手机 WIFI 中的 IP 地址。接下来就可以执行连接命令了，连接命令为 adb connect 手机 IP 地址: TCP 绑定的端口。</p><p>例如，我手机的 IP 地址是 192.168.31.93，之前 TCP 模式绑定的端口为 5555，此时我需要执行的连接命令为 <code>adb connect 192.168.31.93:5555</code><br>此时控制台输出 connected to 192.168.31.93:5555，表示无线连接成功。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-82345073af59d522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="无线连接.png"></p><p>TCP 模式一旦开启，只在手机重启时才会关闭，关闭后如果还需使用需要重新开启。断网重连，换 WIFI，不会关闭，只要保持手机电脑在统一 WIFI 下就不需要重新开启。</p><p>不过如果手机一旦断网，或者切换 WIFI，与电脑的无线连接会立即断开，如果需要重新连接，重新执行一次 <code>adb connect</code> 命令就好。</p><h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><p>在项目中，直接点击 <strong>run</strong>，选择连接的设备即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-062796b8693c088d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="连接手机调试"></p><p>然后，就可以开心的调试了。</p><h2 id="3-补充：连接多台设备"><a href="#3-补充：连接多台设备" class="headerlink" title="3. 补充：连接多台设备"></a>3. 补充：连接多台设备</h2><p>使用<code>adb devices</code> 命令，可以得到一个已连接设备的序列号表，一次连接多台设备跟连接一台设备流程类似，通过 『<strong>序列号指定设备</strong> 』即可。</p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-e077378d8ef5293b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="模拟器和手机同时连接.png"></p><p>例如，需要进行 TCP 模式开启，<code>adb -s f87c75bb tcpip 5555 </code>，但是与电脑建立连接的 adb connect 命令不需要加序列号，因为 IP 地址本来就相当于是序列号了。</p><p>然后，查看手机连接的IPv4地址，比如我的是：192.168.0.200<br>执行 <code>adb connect 192.168.0.200:5555</code></p><p><img src="http://upload-images.jianshu.io/upload_images/1552105-c5e2b5412dd95c07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/640" alt="图片.png"></p><p>接下来，请开始你的调试吧。</p><blockquote><p>个人整理，难免有错误纰漏，欢迎指正。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;1-配置-adb-命令&quot;&gt;&lt;a href=&quot;#1-配置-adb-命令&quot; class=&quot;headerlink&quot; title=&quot;1. 配置 adb 命令&quot;&gt;&lt;/a&gt;1. 配置 adb 命令&lt;/h2&gt;&lt;p&gt;一直想在AndroidStudio的Terminal中 输入 a
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+      <category term="Android" scheme="http://memmrf.top/categories/%E5%B7%A5%E4%BD%9C/Android/"/>
+    
+    
+      <category term="Android" scheme="http://memmrf.top/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo相关问题收集</title>
+    <link href="http://memmrf.top/2017/02/03/2017/Hexo-%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/"/>
+    <id>http://memmrf.top/2017/02/03/2017/Hexo-相关问题收集/</id>
+    <published>2017-02-03T05:30:12.000Z</published>
+    <updated>2017-02-12T05:32:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="文章收集"><a href="#文章收集" class="headerlink" title="文章收集"></a>文章收集</h3><ul><li><a href="https://www.jianshu.com/p/e7413116e9d4">Hexo搭建</a></li><li><a href="https://segmentfault.com/a/1190000004714256"><a href="https://segmentfault.com/a/1190000004714256">自动化部署Hexo</a></a></li><li><a href="https://www.jianshu.com/p/5691815b81b6">部署Hexo博客1</a></li><li><a href="http://blog.csdn.net/woblog/article/details/51319364">部署Hexo博客2</a></li><li><a href="http://uchuhimo.me/2017/04/11/genesis/">Hexo搭建与部署</a></li><li><a href="https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud">为NexT主题添加文章阅读量统计功能</a></li></ul><h4 id="主题搜集"><a href="#主题搜集" class="headerlink" title="主题搜集"></a>主题搜集</h4><ul><li><a href="http://powman.org/archives/theme-prontera.html">prontera</a></li><li><a href="http://theme-next.iissnan.com/getting-started.html">next</a><br><a href="https://www.jianshu.com/p/f054333ac9e6">https://www.jianshu.com/p/f054333ac9e6</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;文章收集&quot;&gt;&lt;a href=&quot;#文章收集&quot; class=&quot;headerlink&quot; title=&quot;文章收集&quot;&gt;&lt;/a&gt;文章收集&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.jianshu.com/p/e7413116e9d4&quot;&gt;Hexo搭建&lt;
+      
+    
+    </summary>
+    
+      <category term="博客" scheme="http://memmrf.top/categories/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="http://memmrf.top/categories/%E5%8D%9A%E5%AE%A2/Hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://memmrf.top/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
